@@ -11,7 +11,7 @@ from django.core.files import File
 
 
 class Categorie(models.Model):
-    categorie=models.CharField(max_length=20)
+    categorie=models.CharField(max_length=20,null=True)
     user=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     
     
@@ -54,7 +54,7 @@ class Produit(models.Model):
 class Stock(models.Model):
     qtStock=models.IntegerField()
     # user= models.ForeignKey(User,blank=True,null=True,on_delete=models.CASCADE)
-    categorie=models.ForeignKey(Categorie, blank=True,on_delete=models.CASCADE)
+    categorie=models.ForeignKey(Categorie, blank=True,on_delete=models.CASCADE,null=True)
     produit=models.ManyToManyField(Produit,blank=True,related_name="article") 
     
     def __str__(self):
