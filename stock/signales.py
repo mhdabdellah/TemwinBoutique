@@ -18,6 +18,6 @@ def calculate_total_price(sender, instance,action,**kwargs):
     instance.save()
 
 
-@receive(pre_delete,sender=Article)
-def delete_image(sender,instance,**kwargs):
-      instance.barcode.delete(False)
+# @receive(pre_delete,sender=Article)
+# def delete_image(sender,instance,**kwargs):
+#       instance.barcode.delete(False)
