@@ -120,10 +120,7 @@
                         <li> <a href="{% url 'stock:stockform' %}"  ><i class="ti-view-list"> Ajouter nouvelle Stock</i></a></li>
                         <li> <a href="{% url 'stock:categorieform'%}"  ><i class="ti-view-list"> Ajouter nouvelle Categorie </i></a></li>
                         <li> <a href="{% url 'stock:articleform'%}"  ><i class="ti-view-list"> Ajouter nouvelle Article</i></a> </li>
-                        <!-- <li> <a href="{% url 'stock:entrerform'%}"  ><i class="ti-view-list"> Entrer Article Dans une Stock</i></a> </li> -->
                         <li> <a href="{% url 'stock:sortir_article'%}"><i class="ti-view-list"><i class="fas fa-sort"> Sortir Article d'une Stock</i></i></a> </li>
-                        <!-- <li> <a href="{% url 'stock:commandeform'%}"><i class="ti-view-list"> Faire une nouvelle Commande</i> </a> </li>
-                        <li> <a href="{% url 'stock:panierform'%}"><i class="ti-view-list"> Ajouter une Panier</i></a> </li> --> 
                         <li> <a href="{% url 'stock:factureform'%}"><i class="ti-view-list"> Ajouter une Facture</i></a> </li>
                         <li> <a href="{% url 'client:clientform'%}"><i class="ti-view-list"> Ajouter un Client</i></a> </li>
                     </ul>
@@ -136,16 +133,13 @@
                         <span class="nav-link-text">Les Tables</span>
                     </a>
                     <ul class="sidenav-second-level collapse" id="d_tables" data-parent="#accordion">
-                        <!-- <li> <a href="table_entrer"><i class="vl_clip-board"> list des article Entrer dans la stock</i></a> </li> -->
                         <li> <a href="{% url 'stock:table_users'%}"> <i class="vl_user-male"> list des utilisateurs</i></a> </li>
                         <li> <a href="{% url 'stock:table_article'%}"> <i class="vl_clip-board"> list des article</i></a> </li>
-                         <li><a href="{% url 'stock:table_categorie'%}"><i class="vl_clip-board"> list des categorie qui exist</i></a> </li>
-                         <li><a href="{% url 'stock:table_stock'%}"><i class="icon-social-dropbox"> list des stocks</i></a> </li>
-                         <li><a href="{% url 'stock:table_sortir'%}"><i class="icon-social-dropbox"> list des articles sortir</i></a> </li>
-                         <!-- <li><a href="{% url 'stock:table_commande'%}"><i class="vl_clip-board"> list des commandes</i></a> </li>
-                         <li><a href="{% url 'stock:table_panier'%}"><i class="vl_clip-board"> list des Pagnier</i></a> </li> -->
-                         <li><a href="{% url 'stock:table_facture'%}"><i class="vl_clip-board"> list des factures</i> </a> </li>
-                         <li><a href="{% url 'client:table_client'%}"><i class="vl_clip-board"> list des Clients</i> </a> </li>
+                        <li><a href="{% url 'stock:table_categorie'%}"><i class="vl_clip-board"> list des categorie qui exist</i></a> </li>
+                        <li><a href="{% url 'stock:table_stock'%}"><i class="icon-social-dropbox"> list des stocks</i></a> </li>
+                        <li><a href="{% url 'stock:table_sortir'%}"><i class="icon-social-dropbox"> list des articles sortir</i></a> </li>
+                        <li><a href="{% url 'stock:table_facture'%}"><i class="vl_clip-board"> list des factures</i> </a> </li>
+                        <li><a href="{% url 'client:table_client'%}"><i class="vl_clip-board"> list des Clients</i> </a> </li>
                     </ul>
                 </li>
 
