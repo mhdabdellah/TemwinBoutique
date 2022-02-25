@@ -54,19 +54,6 @@ class NewArticle(forms.ModelForm):
         self.fields['categorie'].queryset =Categorie.objects.filter(user=user)
         self.fields['categorie'].required=False 
 
-class NewEntrer(forms.ModelForm):
-    class Meta:
-        model = Entrer
-        fields =['stock', 'article', 'qte', 'prix_entree', 'date_entree']
-        exclude =['user']
-        widgets = {
-            'date_entree': DateInput(),
-        }
-    def __init__(self, user, *args, **kwargs):
-        super(NewEntrer, self).__init__(*args, **kwargs)
-        self.fields['stock'].queryset =Entrer.objects.filter(user=user)
- 
-
 class NewSortir(forms.ModelForm):
     class Meta:
         model = Sortir
@@ -83,16 +70,7 @@ class NewSortir(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(NewSortir, self).__init__(*args, **kwargs)
         self.fields['qte']=forms.IntegerField(min_value=1)
-
-class NewCommande(forms.ModelForm):
-    class Meta:
-        model = Commande
-        fields =['date', 'user']          
-
-class NewPanier(forms.ModelForm):
-    class Meta:
-        model = Panier
-        fields =['commande', 'article', 'qte']  
+ 
 
 class NewFacture(forms.ModelForm):
     class Meta:

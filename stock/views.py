@@ -340,27 +340,7 @@ def articleform(request):
 
 
     
-@login_required(login_url='accounts/login')
-@in_fix
-def entrerform(request):
-    if request.method == 'POST':
-        entrer_Form = NewEntrer(request.POST)
-        if entrer_Form.is_valid():
-            entrer_Form= entrer_Form.save(commit=False)
-            entrer_Form.user = User.objects.get(id=request.user.pk)
-            entrer_Form.save()
-            messages.success(
-                request, f"Felicitations l'article  {entrer_Form.user}  est bien ajoute dans la stock dont l'ID:  ")
-            return redirect(reverse('stock:entrerform'))
-    else:
-    
-        entrer_Form = NewEntrer(request.user)
-        context={
-            
-            'entrer_Form' : entrer_Form,
 
-        }
-        return render(request,'stock/entrerform.html',context)
 
   
 @login_required(login_url='accounts/login')
@@ -392,49 +372,6 @@ def sortirform(request):
 
         }
         return render(request,'stock/sortirform.html',context)
-
-@login_required(login_url='accounts/login')
-@in_fix
-def commandeform(request):
-
-
-   
-    if request.method == 'POST':
-        commande_Form = NewCommande(request.POST)
-        if commande_Form.is_valid():
-            myform=commande_Form.save()
-            messages.success(
-                request, f"Felicitations {myform.user} votre commande est bien ajoute")
-            return redirect(reverse('stock:commandeform'))
-    else:
-        commande_Form = NewCommande()
-        context={
-           
-            'commande_Form' : commande_Form,
-
-        }
-        return render(request,'stock/commandeform.html',context)
-
-
-    
-@login_required(login_url='accounts/login')
-@in_fix
-def panierform(request):
-    if request.method == 'POST':
-        panier_Form = NewPanier(request.POST)
-        if panier_Form.is_valid():
-            myform=panier_Form.save()
-            messages.success(
-                request, f"Felicitations il y a {myform.qte}  est bien ajoute dans votre pagnie")
-            return redirect(reverse('stock:panierform'))
-    else:
-        panier_Form = NewPanier()
-        context={
-           
-            'panier_Form' : panier_Form,
-
-        }
-        return render(request,'stock/panierform.html',context)
 
 @login_required(login_url='accounts/login')
 def factureform(request):
