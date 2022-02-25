@@ -11,21 +11,15 @@
 
   {% if request.user.is_staff and request.user.is_superuser %}
   <div class="content-wrapper">
-        
-            <!-- <div class="container-fluid"> -->
-        <!--creative states-->
-<!--          creative-state-area-->
 
         <div class="container-fluid  mt-3 mb-5 pt-5">
             <div class="row">
                 <div class="col-lg-7 col-12">
                     
-                        <!-- if list_quip.count|sub:list_installation.count < 5  -->
                        
                   
                     <h3 class="text-info">
                         Tableau de bord
-                        <!-- list_quip.count|sub:list_installation.count  -->
                     </h3>
                     
                          <!-- endif -->
@@ -53,7 +47,7 @@
                     <div class="creative-state-info text-center pull-left">
                         <a href="{% url 'stock:sortir_article'%}">
                             
-                        <h3 class="mt-4"> Sortir Des Articles-إخراج  </h3>
+                        <h3 class="mt-4"> Vendre</h3>
                        
                         </a>
                         <div class=" widget-action-link">
@@ -100,9 +94,7 @@
                                  <!-- else  -->
                                 
                                 <small class="text-success weight700" title="pourcentage installation">
-                                   <!-- list_installation.count|div:list_quip.count|mul:100|floatformat:2 -->
-                                  
-<!--                               <i class="fa fa-long-arrow-up"></i>-->
+                            
                            </small>
 
                           
@@ -139,9 +131,7 @@
                     <div class="creative-state-info text-center pull-left">
 
                          <a href="{%url 'stock:table_stock'%}">
-                             <!-- {%
-                                  url 'equip:category_table'
-                                  %} {% if request.user.is_staff %} {% else %} {% endif %} -->
+                             
                                   
                         <h3 class="mt-4"> {{stock.count}} </h3>
                         <p class="mb-0">totale Stocks</p>
@@ -648,21 +638,6 @@
 
                     </div>
                 </div>
-
-                <!-- <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="creative-state-icon bg-danger text-center pull-left">
-                          <div class="preview">  <i class="ti-shopping-cart"></i> </div>
-                    </div>
-                    <div class="creative-state-info text-center pull-left">
-                            
-                        <h3 class="mt-4">{{sortir.count}}</h3>
-                        <p class="mb-0">TOTALE Articles Sorties</p>
-                        <div class=" widget-action-link"> -->
-<!--                            <small class="text-success weight700">5% <i class="fa fa-long-arrow-up"></i></small>-->
-                        <!-- </div>
-
-                    </div>
-                </div> -->
                 
 
             </div>

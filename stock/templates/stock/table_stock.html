@@ -60,32 +60,10 @@
                                                 <th scope="col">SUPRIMER</th>
                                         </tr>
                                         </thead>
-                                    <!-- <tfoot>
-
-                                    <tr>
-                                         <th scope="col" clospan="7"></th>
-                                            <th scope="col"></th>
-                                            <th scope="col"></th>
-                                            <th scope="col"> </th>
-                                            <th scope="col"></th>
-                                            <th scope="col"></th>
-                                            <th scope="col"> </th>
-                                    </tr>
-                                    </tfoot> -->
+                                    
                                     <tbody>
                                         {% for stock in tstock %}
                                         <tr>
-                                            <!-- <td class="action-checkbox">
-
-                                                   {% if request.user.is_staff %}
-                                                             <input type="checkbox" name="_selected_action" value="2" class="action-select">
-                                                   {%endif%}
-
-
-
-                                                <img class="rounded-circle mr-3 table-thumb" src="{{request.user.profile.image.url}}" width="30px"  alt=""/>
-
-                                            </td> -->
                                             <td scope="row"> {{stock.qtStock}} </td>
                                             <td scope="row">{{stock.user}}</td>
                                             <td scope="row">{{stock.categorie}}</td>

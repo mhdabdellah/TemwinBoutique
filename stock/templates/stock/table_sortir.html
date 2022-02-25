@@ -1,4 +1,4 @@
-{% extends 'base.html'%}
+/{% extends 'base.html'%}
 {% block content %}}
 
 {% load crispy_forms_tags %}
@@ -10,21 +10,12 @@
             <!--page title-->
             <div class="page-title mb-4 d-flex align-items-center">
                 <div class="mr-auto">
-<<<<<<< Updated upstream
                     <h4 class="weight500 d-inline-block pr-3 mr-3 border-right">LIST DES ARTICLES SORTIR DE LA STOCK</h4>
                     <nav aria-label="breadcrumb" class="d-inline-block ">
                         <ol class="breadcrumb p-0">
                             <li class="breadcrumb-item"><a href="{% url 'stock:home' %}">Accueil</a></li>
                             <li class="breadcrumb-item"><a href="{% url 'stock:sortirform'%}">Sortire Des Nouvelles Articles</a></li>
                             <li class="breadcrumb-item active" aria-current="page">List Des Articles Sortie</li>
-=======
-                    <h4 class="weight500 d-inline-block pr-3 mr-3 border-right">Table Utilisateur</h4>
-                    <nav aria-label="breadcrumb" class="d-inline-block ">
-                        <ol class="breadcrumb p-0">
-                            <li class="breadcrumb-item"><a href="{% url 'stock:home' %}">Accueil</a></li>
-                            <li class="breadcrumb-item"><a href="">table de stock</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">table de categorie</li>
->>>>>>> Stashed changes
                         </ol>
                     </nav>
                 </div>
@@ -44,17 +35,9 @@
                                                 Action <i class="fa fa-caret-down pl-2"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right vl-dropdown">
-<<<<<<< Updated upstream
                                                  <a class="dropdown-item" href="{% url 'stock:home' %}">Accueil</a>
                                                 <a class="dropdown-item" href="{% url 'stock:sortirform'%}"> Sortire Des Nouvelles Articles</a>
                                                 <a class="dropdown-item" href="table_sortir"> List Des Articles Sortie</a>
-=======
-                                                 <a class="dropdown-item" href="{% url 'accounts:signup'%}">Ajout de utilisateur</a>
-                                                <a class="dropdown-item" href="#"> Move to another group</a>
-                                                <a class="dropdown-item" href="#"> Delete</a>
-                                                <a class="dropdown-item" href="#"> Modifier</a>
-                                                <a class="dropdown-item" href="#"> Send Message</a>
->>>>>>> Stashed changes
                                             </div>
                                         </div>
                                          {%endif%}
@@ -69,11 +52,7 @@
                                     <thead>
 
                                     <tr>
-<<<<<<< Updated upstream
                                        <!-- <th scope="col"></th> -->
-=======
-                                       <th scope="col"></th>
->>>>>>> Stashed changes
                                        
                                        <th scope="col">UTILISATEUR </th>
                                        <th scope="col">STOCK</th>
@@ -86,40 +65,11 @@
                                        <th scope="col">Supprimer</th>
                                     </tr>
                                     </thead>
-                                    <!-- <tfoot>
-
-                                    <tr>
-                                         <th scope="col" clospan="7"></th>
-                                            <th scope="col"></th>
-                                            <th scope="col"></th>
-                                            <th scope="col"> </th>
-                                            <th scope="col"></th>
-                                            <th scope="col"></th>
-                                            <th scope="col"> </th>
-                                    </tr>
-                                    </tfoot> -->
+                                    
                                     <tbody>
                                         {% for sortir in tsortir %}
                                         <tr>
-<<<<<<< Updated upstream
-                                            <!-- <td class="action-checkbox">
-=======
-                                            <td class="action-checkbox">
->>>>>>> Stashed changes
-
-                                                   {% if request.user.is_staff %}
-                                                             <input type="checkbox" name="_selected_action" value="2" class="action-select">
-                                                   {%endif%}
-
-
-
-                                                <img class="rounded-circle mr-3 table-thumb" src="{{request.user.profile.image.url}}" width="30px"  alt=""/>
-
-<<<<<<< Updated upstream
-                                            </td> -->
-=======
-                                            </td>
->>>>>>> Stashed changes
+                                            
                                             <td scope="row"> {{sortir.user}} </td>
                                             <td scope="row">{{sortir.stock}}</td>
                                             <td scope="row">{{sortir.article}}</td>
@@ -127,9 +77,6 @@
                                             <td scope="row">{{sortir.qte}}</td>
                                             <td scope="row">{{sortir.prix_sortie}} <span>N-UM</span></td>
                                             <td scope="row">{{sortir.date_sortie}}</td>
-                                            <!-- <th>
-                                                <a href="update_sortir/{{sortir.id}}" class="btn btn-primary mb-2 btn-success" >Modifier</a>
-                                              </th> -->
                                              <th>
                                                  <a href="delete_sortir/{{sortir.id}}" class="btn btn-primary mb-2 btn-success" >Supprimer</a>
                                          

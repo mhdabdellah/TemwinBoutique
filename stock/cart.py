@@ -54,35 +54,3 @@ class Cart(object):
     def clear(self):
         del self.session[settings.CART_SESSION_ID]
         self.save()
-
-        # les ocations pour rendre la quantité se change automatiquement c-a dire dynamique au niveau du cart.py
- # def set_article_quantity(self,article,unite,override_quantity) :
-    #     article_num=str(article.numero)
-    #     if unite == 1:
-    #         article.quantity = article.quantity - self.cart[article_num]['quantity']
-    #     else :
-            
-    #         article.quantity = article.quantity - self.cart[article_num]['quantity'] * article.quantité_en_vrac
-
-    #  def clear(self,article):
-    #     article_num = str(article.numero)
-    #     if article_num in self.cart:
-    #         del self.cart[article_num]
-    #         self.save()
-    #     # for article in articles:
-    #     for item in self.cart.values():
-    #         article.quantity = article.quantity - Decimal(item['quantity'])*int(item['unite'])
-    #     del self.session[settings.CART_SESSION_ID]
-    #     self.save()
-
-    # def clear(self):
-    #     article_nums=self.cart.keys()
-    #     articles=Article.objects.filter(numero__in=article_nums)
-    #     for article in articles:
-    #         for item in self.cart.values():
-    #             if int(item['unite']) == 1:
-    #                 article.quantity = article.quantity - Decimal(item['quantity'])
-    #             else :
-    #                 article.quantity = article.quantity - Decimal(item['quantity'])*int(item['unite'])
-    #     del self.session[settings.CART_SESSION_ID]
-    #     self.save()

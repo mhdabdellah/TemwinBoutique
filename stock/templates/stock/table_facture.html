@@ -10,21 +10,12 @@
             <!--page title-->
             <div class="page-title mb-4 d-flex align-items-center">
                 <div class="mr-auto">
-<<<<<<< Updated upstream
                     <h4 class="weight500 d-inline-block pr-3 mr-3 border-right">LIST DES FACTURES</h4>
                     <nav aria-label="breadcrumb" class="d-inline-block ">
                         <ol class="breadcrumb p-0">
                             <li class="breadcrumb-item"><a href="{% url 'stock:home' %}">Accueil</a></li>
                             <li class="breadcrumb-item"><a href="{% url 'stock:factureform'%}">Ajouter Une Facture</a></li>
                             <li class="breadcrumb-item active" aria-current="page">List Des Factures</li>
-=======
-                    <h4 class="weight500 d-inline-block pr-3 mr-3 border-right">Table Utilisateur</h4>
-                    <nav aria-label="breadcrumb" class="d-inline-block ">
-                        <ol class="breadcrumb p-0">
-                            <li class="breadcrumb-item"><a href="{% url 'stock:home' %}">Accueil</a></li>
-                            <li class="breadcrumb-item"><a href="">table de stock</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">table de categorie</li>
->>>>>>> Stashed changes
                         </ol>
                     </nav>
                 </div>
@@ -44,18 +35,10 @@
                                                 Action <i class="fa fa-caret-down pl-2"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right vl-dropdown">
-<<<<<<< Updated upstream
                                                 
                                                 <a class="dropdown-item" href="{% url 'stock:home' %}"> Accueil</a>
                                                 <a class="dropdown-item" href="{% url 'stock:factureform'%}">Ajouter Une Facture</a>
                                                 <a class="dropdown-item" href="{% url 'stock:table_facture' %}"> List Des Factures</a>
-=======
-                                                 <a class="dropdown-item" href="{% url 'accounts:signup'%}">Ajout de utilisateur</a>
-                                                <a class="dropdown-item" href="#"> Move to another group</a>
-                                                <a class="dropdown-item" href="#"> Delete</a>
-                                                <a class="dropdown-item" href="#"> Modifier</a>
-                                                <a class="dropdown-item" href="#"> Send Message</a>
->>>>>>> Stashed changes
                                             </div>
                                         </div>
                                          {%endif%}
@@ -65,74 +48,25 @@
                             </div>
                         <div class="card-body- pt-3 pb-4">
                             <div class="table-responsive">
-<<<<<<< Updated upstream
                                 {% if request.user.is_staff %}
-=======
->>>>>>> Stashed changes
                                 <table id="data_table" class="table table-bordered table-striped" cellspacing="0">
 
                                     <thead>
 
                                     <tr>
-<<<<<<< Updated upstream
                                        
                                        <th scope="col">UTILISATEUR </th>
                                        <th scope="col">LES SORTIS </th>
-                                       <!-- <th scope="col" >categorie</th>
-                                       <th scope="col">ARTICLE</th>
-=======
-                                       <th scope="col"></th>
-                                       
-                                       <th scope="col">UTILISATEUR </th>
-                                       <th scope="col">LES SORTIS </th>
-                                       <!-- <th scope="col">ARTICLE</th>
->>>>>>> Stashed changes
-                                       <th scope="col">QUANTITE DE SORTIE</th>
-                                       <th scope="col">LA PRIX D'UNE UNITE </th> -->
                                        <th scope="col">LA PRIX TOTALE</th>
                                        <th scope="col">DATE DE FACTURE</th>
-<<<<<<< Updated upstream
                                        <th scope="col">IMPRIMER LA FACTURE </th>
                                        <th scope="col">SUPPRIMER LA FACTURE</th>
-=======
-                                       <!-- <th scope="col">Modifier</th> -->
-                                       <th scope="col">IMPRIMER LA FACTURE SOUS FORMAT PDF</th>
->>>>>>> Stashed changes
                                     </tr>
                                     </thead>
-                                    <!-- <tfoot>
-
-                                    <tr>
-                                         <th scope="col" clospan="7"></th>
-                                            <th scope="col"></th>
-                                            <th scope="col"></th>
-                                            <th scope="col"> </th>
-                                            <th scope="col"></th>
-                                            <th scope="col"></th>
-                                            <th scope="col"> </th>
-                                    </tr>
-                                    </tfoot> -->
                                     <tbody>
                                         {% for facture in tfacture %}
                                         <tr>
-<<<<<<< Updated upstream
-                                            <!-- <td class="action-checkbox">
-=======
-                                            <td class="action-checkbox">
->>>>>>> Stashed changes
-
-                                                   {% if request.user.is_staff %}
-                                                             <input type="checkbox" name="_selected_action" value="2" class="action-select">
-                                                   {%endif%}
-
-
-
-                                                <img class="rounded-circle mr-3 table-thumb" src="{{request.user.profile.image.url}}" width="30px"  alt=""/>
-
-<<<<<<< Updated upstream
-                                            </td> -->
                                             <td scope="row"> {{facture.User}} </td>
-                                            <!-- <td scope="row">{{facture.sorties.all}}</td> -->
                                             <td>
                                                 <table>
                                                     <thead>
@@ -154,22 +88,9 @@
                                                     {%endfor%}
                                                 </table>
                                             </td>
-=======
-                                            </td>
-                                            <td scope="row"> {{facture.User}} </td>
-                                            <td scope="row">{{facture.sorties.all}}</td>
->>>>>>> Stashed changes
-                                            <!-- <td scope="row">{{facture.sorties.stock}}</td>
-                                            <td scope="row">{{facture.sorties.article}}</td>
-                                            <td scope="row">{{facture.sorties.qte}}</td>
-                                            <td scope="row">{{facture.sorties.prix_sortie}}<span>N-UM</span></td> -->
                                             <td scope="row">{{facture.totalprix}}  <span>N-UM</span></td>
                                             <td scope="row">{{facture.dateFacture}}</td>
-                                            <!-- <th>
-                                                <a href="update_sortir/{{sortir.id}}" class="btn btn-primary mb-2 btn-success" >Modifier</a>
-                                              </th> -->
                                              <th>
-<<<<<<< Updated upstream
                                                  <a href="imprimer_facture/{{facture.id}}" class="btn btn-primary mb-2 btn-success" >IMPRIMER</a>
                                          
                                              </th>
@@ -177,12 +98,6 @@
                                                 <a href="delete_facture/{{facture.id}}" class="btn btn-primary mb-2 btn-success" >SUPPRIMER</a>
                                         
                                             </th>
-=======
-                                                 <a href="imprimer_facture/{{facture.id}}" class="btn btn-primary mb-2 btn-success" >IMPRIMER LA FACTURE</a>
-                                         
-                                             </th>
->>>>>>> Stashed changes
-                                             <!-- javascript:window.print() -->
 
                                     
 
@@ -192,7 +107,6 @@
                                     </tbody>
 
                                 </table>
-<<<<<<< Updated upstream
                                 {% else %}
                                 <table id="data_table" class="table table-bordered table-striped" cellspacing="0">
 
@@ -261,8 +175,6 @@
 
                                 </table>
                                 {% endif %}
-=======
->>>>>>> Stashed changes
                             </div>
                         </div>
                     </div>

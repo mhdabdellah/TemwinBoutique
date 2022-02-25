@@ -72,7 +72,6 @@
     </div>
     <div class="card-body">   
       <h5 class="card-title">Facture NO:</h5>
-      <!-- <form method="POST" id="sortir_form" data-articles-url="{% url 'stock:sortir_article'%}" data-stocks-url="{% url 'stock:load_stock_out' %}"> -->
         <div class="form-group">
           <table class="table table-striped">
             <div class="modal-content">
@@ -172,7 +171,6 @@
     $('#id_numero').keyup('change',function() {
         var url =$('#sortir_form').attr("data-articles-url");
         var article_number=$('#id_numero').val();
-        // console.log(article_number)
         if (changeTimer) clearTimeout(changeTimer);
         changeTimer = setTimeout(function () {
           $.ajax({
@@ -183,14 +181,7 @@
         },
         success: function(data){
           $('#ajoutfac').css('display','block');
-          $('#bi-check').attr('fill', 'green');
-          //  if(reload_on_return){
-          //   
-          // }
-         
-          
-          
-          
+          $('#bi-check').attr('fill', 'green'); 
         },
         isModified: function () {
           console.log('kfjkdfjkd')
@@ -214,37 +205,8 @@ $('#clientname').keyup('change',function() {
   $(this).setAttribute('disabled','')
 })
 
-    // $('#id_stock').change(function(){
-    //   var url =$('#sortir_form').attr("data-articles-url");
-    //   var stock=$(this).val();
-    //   $.ajax({
-    //     url : url,
-    //     data:{
-    //       'stock':stock
-    //     },
-    //     success: function(data){
-    //       $("#id_article").html(data);
-    //     }
-    //   });
-    // });
-    // $('#id_categorie').change(function(){
-    //   var url =$('#sortir_form').attr("data-stocks-url");
-    //   var cat=$(this).val();
-    //   $.ajax({
-    //     url : url,
-    //     data:{
-    //       'categorie':cat
-    //     },
-    //     success: function(data){
-    //       $("#id_stock").html(data);
-    //     }
-    //   });
-    // });
 </script>
 <script>
-  /*function myfun() {
-  window.print();
-  }*/
   function imprimer(divname){
   var headstr="<html><head><title></title></head><body>";
   var footstr="</body>";

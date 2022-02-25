@@ -60,32 +60,9 @@
                                        <th scope="col">Supprimer</th>
                                     </tr>
                                     </thead>
-                                    <!-- <tfoot>
-
-                                    <tr>
-                                         <th scope="col" clospan="7"></th>
-                                            <th scope="col"></th>
-                                            <th scope="col"></th>
-                                            <th scope="col"> </th>
-                                            <th scope="col"></th>
-                                            <th scope="col"></th>
-                                            <th scope="col"> </th>
-                                    </tr>
-                                    </tfoot> -->
                                     <tbody>
                                         {% for categori in tcategorie %}
                                         <tr>
-                                            <!-- <td class="action-checkbox">
-
-                                                   {% if request.user.is_staff %}
-                                                             <input type="checkbox" name="_selected_action" value="2" class="action-select">
-                                                   {%endif%}
-
-
-
-                                                <img class="rounded-circle mr-3 table-thumb" src="{{request.user.profile.image.url}}" width="30px"  alt=""/>
-
-                                            </td> -->
                                             <td>{{categori.categorie}}</td>
                                             <td>{{categori.user}}</td>
                                             <th>
@@ -116,18 +93,6 @@
                                        <th scope="col">UTILISATEUR </th>
                                     </tr>
                                     </thead>
-                                    <!-- <tfoot>
-
-                                    <tr>
-                                         <th scope="col" clospan="7"></th>
-                                            <th scope="col"></th>
-                                            <th scope="col"></th>
-                                            <th scope="col"> </th>
-                                            <th scope="col"></th>
-                                            <th scope="col"></th>
-                                            <th scope="col"> </th>
-                                    </tr>
-                                    </tfoot> -->
                                     <tbody>
                                         {% for categori in tcategorie %}
                                         <tr>

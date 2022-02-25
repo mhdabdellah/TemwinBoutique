@@ -3,7 +3,6 @@ from . import views
 app_name='stock'
 urlpatterns=[
     path('',views.home,name='home'),
-
     path('stockform',views.stockform ,name='stockform'),
     path('categorieform',views.categorieform ,name='categorieform'),
     path('articleform',views.articleform ,name='articleform'),
@@ -37,7 +36,7 @@ urlpatterns=[
 
     path('ajax_delete',views.ajax_delete,name='ajax_delete'),
     path('ajax_update/',views.ajax_update,name='ajax_update'),
-    # path('delete_user')
+    
     path('imprimer_facture/<int:id>',views.imprimer_facture,name='imprimer_facture'),
     path('cart_detail',views.cart_detail,name='cart_detail'),
     path('cart_add/',views.cart_add,name='cart_add'),

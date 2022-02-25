@@ -1,7 +1,6 @@
 from django import forms
 from .models import *
 from client.models import Client
-# from django.contrib.auth import User
 from crispy_forms.helper import FormHelper
 from django import forms
 
@@ -12,9 +11,7 @@ class CartAddArticleForm(forms.Form):
     quantity = forms.TypedChoiceField(choices=ARTICLE_QUANTITY_CHOICES,widget=forms.Select({'class':"form-control"}))
     override =forms.BooleanField(required=False, initial=False,widget=forms.HiddenInput())
     unite = forms.TypedChoiceField(required=False, choices=UNITE,widget=forms.Select({'class':"form-control d-print-none"}))
-    # def __init__(self,*args, **kwargs):
-    #     super(CartAddArticleForm(), self).__init__(*args, **kwargs)
-    #     self.fields.label=False
+   
 class DateInput(forms.DateInput):
     input_type = 'date'
 class NewStock(forms.ModelForm):
@@ -24,7 +21,6 @@ class NewStock(forms.ModelForm):
         exclude=['user','qtStock']
     def __init__(self,user, *args, **kwargs):
         super(NewStock, self).__init__(*args, **kwargs)
-        # self.fields['qtStock'].label= "Quantité de stock"
         self.fields['categorie'].required = True
         self.fields['categorie'].queryset =Categorie.objects.filter(user=user)
         self.fields['article'].queryset=Article.objects.none()
@@ -56,9 +52,7 @@ class NewArticle(forms.ModelForm):
      
         super(NewArticle, self).__init__(*args, **kwargs)
         self.fields['categorie'].queryset =Categorie.objects.filter(user=user)
-        self.fields['categorie'].required=False
-        # for key in self.fields:
-        # self.fields['description'].required = False 
+        self.fields['categorie'].required=False 
 
 class NewEntrer(forms.ModelForm):
     class Meta:
@@ -89,32 +83,7 @@ class NewSortir(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(NewSortir, self).__init__(*args, **kwargs)
         self.fields['qte']=forms.IntegerField(min_value=1)
-        # self.fields['categorie'].queryset =Categorie.objects.filter(user=user)
-        
-        # self.fields['article'].queryset=Article.objects.none()
-        # self.fields['stock'].queryset=Stock.objects.none()
-        # if 'categorie' in self.data:
-        #     try:
-        #         categorie_id=int(self.data.get('categorie'))
-        #         self.fields['stock'].queryset=Stock.objects.filter(categorie=categorie_id).order_by('qtStock')
-        #     except (ValueError, TypeError):
-        #         pass
-        # elif self.instance.pk:
-        #     self.fields['stock'].queryset=self.instance.categorie.article_set.order_by('qtStock')
-        # if 'stock' in self.data:
-        #     # stock_id=int(self.data.get('stock'))
-        #     # st=stock.objects.get(id=stock_id)
-        #     # qtStock= st.qtStock
-        #     # self.fields['qte']=forms.IntegerField(max_value=int(qtStock),min_value=1)
-        #     try:
-        #         stock_id=int(self.data.get('stock'))
-        #         self.fields['article'].queryset=Article.objects.filter(stock=stock_id).order_by('nom')
-               
 
-        #     except (ValueError, TypeError):
-        #         pass
-        # elif self.instance.pk:
-        #     self.fields['article'].queryset=self.instance.stock.article_set.order_by('nom')
 class NewCommande(forms.ModelForm):
     class Meta:
         model = Commande

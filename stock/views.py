@@ -3,9 +3,7 @@ from django.http import HttpResponse
 from django import template
 from django.template.loader import get_template
 from django.utils.html import format_html
-# from django
 import datetime
-# from xhtml2pdf import pisa
 from django.contrib import messages
 from django.urls import reverse
 from .models import *
@@ -132,13 +130,11 @@ def home(request):
         categorie=Categorie.objects.filter(user = request.user)
         article=Article.objects.filter(user = request.user)
         stock=Stock.objects.filter(user = request.user)
-        # notification=Message.objects.filter(Q(receiver=other_user,seen=False))
         user=User.objects.all()
         context={'user':user,'categorie':categorie,'article':article,'stock':stock,}
         return render(request,'stock/index.html',context)
 
     if request.user.is_staff == False and request.user.is_superuser == False:
-        # categorie=Categorie.objects.filter(user = request.user.profile.manager)
         profiles = Profile.objects.all()
         for profile in profiles :
             if profile.user == request.user :
@@ -146,15 +142,6 @@ def home(request):
                 context={'article':article,}
                 return render(request,'stock/index.html',context)
                 break
-
-        # if profile1 == None :
-        #     article=Article.objects.filter(user = 'mklkkjjnbuyjnkn')
-        #     context={'article':article,}
-        #     return render(request,'stock/index.html',context)
-        # else :
-        #     article=Article.objects.filter(user = 4)
-        #     context={'article':article,}
-        #     return render(request,'stock/index.html',context)
 
     else :
         user=User.objects.all()
@@ -179,14 +166,11 @@ def stockform(request):
                 print(expr)
                 
                 exp = Article.objects.get(id=expr)
-                # print(exp)
-                # exp.quantity=quantity
                 quantity=exp.quantity + quantity
             print(quantity)
             stock_Form.qtStock=quantity
             stock_Form.save()
             for expr in mes_article:
-                # print(expr)
                 exp = Article.objects.get(id=expr)
                 stock_Form.article.add(exp)
                 stock_Form.save()
@@ -243,23 +227,14 @@ def sortir_article(request):
     for item in cart:
         print (item)
         item['update_quantity']=CartAddArticleForm(initial={'quantity':item['quantity'],'override':True,'unite':'1'})
-    # print(cart)
-    # article=None
-    # if request.GET.get('article_number') is not None:
-    #  numero=request.GET.get('article_number')
-    #  article=Article.objects.get(numero=numero)
     if request.method == 'POST':
         articles=[]
         i=0
         for item in cart:
             id_article=item['article'].id
             article=Article.objects.get(id=int(id_article))
-            # if item['unite'] == 'individuel':
             article.quantity = article.quantity - int(item['quantity'])
             article.save()
-            # else :
-            #     article.quantity = article.quantity - (int(item['quantity']) * article.quantité_en_vrac) 
-            #     article.save()
             print (article.id)
             articles.append(id_article)
             stock_id=Stock.objects.get(article=article)
@@ -269,10 +244,9 @@ def sortir_article(request):
         for s in articles:
             fac.sorties.add(Sortir.objects.filter(article=s).last())
             fac.save()
-        
-    #  return render(request,'stock/sortir_article.html',{'article':article,'cart_article_form':cart_article_form})
-    # print(article)
+
     return render(request,'stock/sortir_article.html',{'cart_article_form':cart_article_form,'cart':cart})
+
 def ajax_delete(request):
     id_user = request.GET.getlist('id_user[]')
     print(id_user)
@@ -298,8 +272,7 @@ def ajax_update(request):
             messages.success(
                 request, f"Felicitation utilisateur bien ajoute")
         return redirect('accounts:signup')
-    # return redirect( reverse('accounts:user_update',kwargs={'user':user.id}))
-    # redirect(reverse('app:view', kwargs={ 'bar': FooBar }))
+    
 def update_user(request, user):
     form = SignupForm(instance=user)
     return redirect(reverse('accounts:signup', kwargs={'form': form}))
@@ -412,15 +385,6 @@ def sortirform(request):
             return redirect(reverse('stock:sortirform'))
           
     else:
-    #     form = NewCategorie()
-
-    # context = {
-        
-    #     'form':form,
-
-    # }
-    # return render(request, 'stock/add_categorie.html', context)
-        # stock= Stock.objects.filter(user=request.user)
         sortir_Form = NewSortir(request.user)
         context={
            
@@ -434,7 +398,7 @@ def sortirform(request):
 def commandeform(request):
 
 
-   # <<<<<<< HEAD
+   
     if request.method == 'POST':
         commande_Form = NewCommande(request.POST)
         if commande_Form.is_valid():
@@ -443,14 +407,6 @@ def commandeform(request):
                 request, f"Felicitations {myform.user} votre commande est bien ajoute")
             return redirect(reverse('stock:commandeform'))
     else:
-    #     form = NewCategorie()
-
-    # context = {
-        
-    #     'form':form,
-
-    # }
-    # return render(request, 'stock/add_categorie.html', context)
         commande_Form = NewCommande()
         context={
            
@@ -464,9 +420,6 @@ def commandeform(request):
 @login_required(login_url='accounts/login')
 @in_fix
 def panierform(request):
-
-
-# <<<<<<< HEAD
     if request.method == 'POST':
         panier_Form = NewPanier(request.POST)
         if panier_Form.is_valid():
@@ -475,14 +428,6 @@ def panierform(request):
                 request, f"Felicitations il y a {myform.qte}  est bien ajoute dans votre pagnie")
             return redirect(reverse('stock:panierform'))
     else:
-    #     form = NewCategorie()
-
-    # context = {
-        
-    #     'form':form,
-
-    # }
-    # return render(request, 'stock/add_categorie.html', context)
         panier_Form = NewPanier()
         context={
            
@@ -491,20 +436,8 @@ def panierform(request):
         }
         return render(request,'stock/panierform.html',context)
 
-
-  #  panier_Form = NewPanier()
-  #  context={
-     #   'title' : 'Entrer',
-     #   'panier_Form' : panier_Form,
-
-  #  }
-  #  return render(request,'stock/panierform.html',context)
-
 @login_required(login_url='accounts/login')
 def factureform(request):
-
-
-# <<<<<<< HEAD
     if request.method == 'POST':
         facture_Form = NewFacture(request.POST)
         if facture_Form.is_valid():
@@ -513,14 +446,6 @@ def factureform(request):
                 request, f"Felicitations la facture  {myform.totalprix}  est bien ajoute")
             return redirect(reverse('stock:factureform'))
     else:
-    #     form = NewCategorie()
-
-    # context = {
-        
-    #     'form':form,
-
-    # }
-    # return render(request, 'stock/add_categorie.html', context)
         facture_Form = NewFacture()
         context={
            
@@ -530,24 +455,12 @@ def factureform(request):
         return render(request,'stock/factureform.html',context)
 
 
-   # facture_Form = NewFacture()
-   # context={
-       # 'title' : 'Entrer',
-       # 'facture_Form' : facture_Form,
-
-  #  }
-   # return render(request,'stock/factureform.html',context)
-
 @login_required(login_url='accounts/login')
 @admin_and_manager_only 
 def tableuser(request):
     message = get_notifications(request)
     profile = Profile.objects.all()
     user = User.objects.all()
-
-    # n= Equipement.objects.all().count|sub-Installation.objects.all().count
-
-
     context={
 
         'profile': profile,
@@ -570,12 +483,9 @@ def tentrer(request):
     return render(request,'stock/table_entrer.html',context)
 
 @login_required(login_url='accounts/login')
-#@allowed_users(allowed_roles=['admin','shopkipper','manager'])
 def tarticle(request):
     message = get_notifications(request)
     article_manager = Article.objects.filter(user = request.user)
-    # article_vendeure = Article.objects.filter(user = request.user.profile.manager)
-    
     article_admin = Article.objects.all()
     
 
@@ -647,7 +557,6 @@ def tstock(request):
 
 @login_required(login_url='accounts/login')
 @admin_and_manager_only
-# @admin_only
 def tsortir(request):
     context={
 
@@ -693,10 +602,7 @@ def tfacture(request):
 @login_required(login_url='accounts/login')
 @in_fix
 def results(request):
-    #articles = Article.objects.all()
     search_text = request.GET.get('csrfmiddlewaretoken','')
-    #results = ArticleFilter(search_text,queryset = Article.objects.all())
-   
     results = Article.objects.filter(nom=search_text)
     return render(request,'stock/results.html',{'results' : results})
 
@@ -718,7 +624,6 @@ def update_article(request, id):
     if form.is_valid():
         myform = form.save()
         return redirect(reverse('stock:table_article'))
-        #return redirect('stock/table_article.html')
 
     return render(request,'stock/update_article.html',{ 'form': form,  'article': article})
 
@@ -729,8 +634,6 @@ def delete_article(request, id):
     if request.method == 'POST': 
         article.delete()
         return redirect(reverse('stock:table_article'))
-        #render(request,'stock/table_article.html',{ 'title': 'les article',  'tarticle': Article.objects.all()})
-        #return redirect('stock/table_article.html')
 
     return render(request,'stock/delete_article.html',{'article': article})
 
@@ -741,8 +644,7 @@ def update_categorie(request, id):
     form = NewCategorie(request.POST or None, instance=categorie )
     if form.is_valid():
         myform = form.save()
-        return redirect(reverse('stock:table_categorie'))        #return redirect('stock/table_article.html')
-
+        return redirect(reverse('stock:table_categorie'))
     return render(request,'stock/update_categorie.html',{ 'form': form,  'categorie': categorie})
 
 @login_required(login_url='accounts/login')
@@ -752,8 +654,6 @@ def delete_categorie(request, id):
     if request.method == 'POST': 
         categorie.delete()
         return redirect(reverse('stock:table_categorie'))
-        #render(request,'stock/table_categorie.html',{ 'title': 'les categorie',  'tcategorie': Categorie.objects.all()})
-        #return redirect('stock/table_article.html')
 
     return render(request,'stock/delete_categorie.html', {'categorie': categorie})
 
@@ -765,8 +665,6 @@ def update_stock(request, id):
     if form.is_valid():
         myform = form.save()
         return redirect(reverse('stock:table_stock'))
-        #render(request,'stock/table_stock.html',{ 'title': 'les Stocks',  'tstock': Stock.objects.all()})
-        #return redirect('stock/table_article.html')
 
     return render(request,'stock/update_stock.html',{ 'form': form,  'stock': stock})
 
@@ -777,7 +675,6 @@ def delete_stock(request, id):
     if request.method == 'POST': 
         stock.delete()
         return redirect(reverse('stock:table_stock'))
-        #return redirect('stock/table_article.html')
 
     return render(request,'stock/delete_stock.html',{'stock': stock}) 
 
@@ -788,8 +685,6 @@ def delete_sortir(request, id):
     if request.method == 'POST': 
         sortir.delete()
         return redirect(reverse('stock:table_sortir'))
-        #render(request,'stock/table_sortir.html',{ 'title': 'les Sorties',  'tsortir': Sortir.objects.all()})
-        #return redirect('stock/table_article.html')
 
     return render(request,'stock/delete_sortir.html',{'sortir': sortir})
 

@@ -25,27 +25,19 @@
     <thead>
 
     <tr>
-       <!-- <th scope="col">UTILISATEUR </th> -->
        <th scope="col" >categorie</th>
        <th scope="col">article</th>
        <th scope="col">prix</th>
-       <!-- <th scope="col">DATE DE FACTURE</th> -->
     </tr>
     </thead>
     <tbody>
         {%for item in facture.sorties.all %}
 
         <tr>
-            <!-- <td scope="col" rowspan="{{facture.sorties.all.count}}" > {{facture.User}} </td> -->
-           
             <td scope="row">{{item.categorie}}</td>
             <td scope="row">{{item.article}}</td>
             <td scope="row">{{item.prix_sortie}}</td>
-
-
-           
-            <!-- <td scope="row" rowspan="{{facture.sorties.all.count}}">{{facture.dateFacture}}</td> -->
-        </tr>
+          </tr>
         {%endfor %}
         <tr>
           <th scope="row" colspan="6">LA PRIX TOTAL DES SORTIES     {{facture.totalprix}}  <span>N-UM</span></th>

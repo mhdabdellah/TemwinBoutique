@@ -7,9 +7,6 @@ from barcode.writer import ImageWriter
 from io import BytesIO
 from django.core.files import File
 
-# from django.utils import timezone
-
-# Create your models here.
 
 
 class Categorie(models.Model):
@@ -22,10 +19,7 @@ class Categorie(models.Model):
 
 
 
-
-
 Status=(('0','Non'),('1','Oui'))
-
 class Article(models.Model):
 
     user= models.ForeignKey(User,blank=True,null=True,on_delete=models.CASCADE)
@@ -38,27 +32,20 @@ class Article(models.Model):
     prix_achat=models.IntegerField(null=True)
     statut=models.CharField(max_length=2,null=True,default='0',choices=Status)
     quantité_en_vrac =models.PositiveIntegerField(null=True)
-# quantité_en_vrac ===== الكميـــة فـــــــــــي الجملـــــــــــة 
 
     def __str__(self):
         return self.nom
-    # def createunique():
-    #     return ''.join(random.choice(string.digits, k=8))
+
     def save(self,*args, **kwargs):
         if self._state.adding:
             EAN =barcode.get_barcode_class('upc')
             rend=str(random.randint(2055,99999))
-            # print(r)
             r=str(random.randint(20,1000))
             rr=self.categorie.id+self.prix_achat
-            # unique=self.createunique
-            
             ean=EAN(str(self.categorie.id)+str(self.user.id)+r+rend+str(self.date_entree.year)+str(self.date_entree.month)+str(self.date_entree.day),writer=ImageWriter())
             buffer =BytesIO()
             ean.write(buffer)
-            
             self.numero=ean.__str__()
-
             self.barcode.save(str({self.nom})+'.png',File(buffer),save=False)
         return super().save(*args, **kwargs)
         
@@ -70,7 +57,6 @@ class Stock(models.Model):
     qtStock=models.IntegerField()
     user= models.ForeignKey(User,blank=True,null=True,on_delete=models.CASCADE)
     categorie=models.ForeignKey(Categorie, blank=True,on_delete=models.CASCADE)
-    
     article=models.ManyToManyField(Article,blank=True,related_name="article") 
     
     def __str__(self):
@@ -121,11 +107,10 @@ class Panier(models.Model):
 
 class Facture(models.Model):
     dateFacture=models.DateField()
-    # qte=models.IntegerField(null=True)
     sorties=models.ManyToManyField(Sortir,related_name='sorties',blank=True)
     User=models.ForeignKey(User,on_delete=models.CASCADE)
-    # article=models.ForeignKey(Article,on_delete=models.CASCADE,null=True)
     totalprix=models.FloatField(null=True) 
+
     def __str__(self):
         return f"la prix total est {self.totalprix}"
     def get_sorties(self):

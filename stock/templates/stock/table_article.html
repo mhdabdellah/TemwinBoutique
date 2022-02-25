@@ -67,32 +67,9 @@
                                                 <th scope="col">SUPRIMER</th>
                                         </tr>
                                         </thead>
-                                    <!-- <tfoot>
-
-                                    <tr>
-                                         <th scope="col" clospan="7"></th>
-                                            <th scope="col"></th>
-                                            <th scope="col"></th>
-                                            <th scope="col"> </th>
-                                            <th scope="col"></th>
-                                            <th scope="col"></th>
-                                            <th scope="col"> </th>
-                                    </tr>
-                                    </tfoot> -->
                                     <tbody>
                                         {% for article in tarticle %}
                                         <tr>
-                                            <!-- <td class="action-checkbox">
-
-                                                   {% if request.user.is_staff %}
-                                                             <input type="checkbox" name="_selected_action" value="2" class="action-select">
-                                                   {%endif%}
-
-
-
-                                                <img class="rounded-circle mr-3 table-thumb" src="{{request.user.profile.image.url}}" width="30px"  alt=""/>
-
-                                            </td> -->
                                             <td scope="row"> {{article.numero}} </td>
                                             <td scope="row">{{article.nom}}</td>
                                             <td scope="row">{{article.quantity}}</td>
@@ -125,7 +102,6 @@
                                     <thead>
 
                                         <tr>
-                                           <!-- <th scope="col"></th> -->
                                                 <th scope="col">NUMERO</th>
                                                 <th scope="col">NOM</th>
                                                 <th scope="col">LA QUANTITE DISPONIBLE</th>
@@ -135,32 +111,9 @@
                                                 <th scope="col">STATUS</th>
                                         </tr>
                                         </thead>
-                                    <!-- <tfoot>
-
-                                    <tr>
-                                         <th scope="col" clospan="7"></th>
-                                            <th scope="col"></th>
-                                            <th scope="col"></th>
-                                            <th scope="col"> </th>
-                                            <th scope="col"></th>
-                                            <th scope="col"></th>
-                                            <th scope="col"> </th>
-                                    </tr>
-                                    </tfoot> -->
                                     <tbody>
                                         {% for article in tarticle %}
                                         <tr>
-                                            <!-- <td class="action-checkbox">
-
-                                                   {% if request.user.is_staff %}
-                                                             <input type="checkbox" name="_selected_action" value="2" class="action-select">
-                                                   {%endif%}
-
-
-
-                                                <img class="rounded-circle mr-3 table-thumb" src="{{request.user.profile.image.url}}" width="30px"  alt=""/>
-
-                                            </td> -->
                                             <td scope="row"> {{article.numero}} </td>
                                             <td scope="row">{{article.nom}}</td>
                                             <td scope="row">{{article.quantity}}</td>
@@ -168,10 +121,6 @@
                                             <td scope="row">{{article.date_entree}}</td>
                                             <td scope="row">{{article.prix_achat}} <span>N-UM</span></td>
                                             <td scope="row">{{article.statut}}</td>
-
-                                            
-
-
                                         </tr>
 
                                         {%endfor%}
