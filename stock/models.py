@@ -62,18 +62,6 @@ class Stock(models.Model):
     def __str__(self):
         return f"la quantite de Stock: {self.qtStock}"
     
-        
-
-class Entrer(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
-    stock=models.ForeignKey(Stock,on_delete=models.CASCADE)
-    article=models.ForeignKey(Article,on_delete=models.CASCADE)
-    qte=models.IntegerField()
-    prix_entree=models.IntegerField()
-    date_entree=models.DateField()
-
-    def __str__(self):
-        return f"les articles entree dans la stock par l'utilisateur  {self.user}"
 
 class Sortir(models.Model):
     categorie = models.ForeignKey(Categorie,on_delete=models.CASCADE,null=True)
@@ -89,21 +77,6 @@ class Sortir(models.Model):
         self.prix_sortie = self.article.prix_achat * self.qte
         return super().save(*args,**kwargs) 
  
-
-class Commande(models.Model):
-    date=models.DateField()
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"la commande de l'utilisateur {self.user}"
-    
-class Panier(models.Model):
-    commande=models.ForeignKey(Commande,on_delete=models.CASCADE)
-    article=models.ForeignKey(Article,on_delete=models.CASCADE)
-    qte=models.IntegerField()
-
-    def __str__(self):
-        return f"la pagnie de la commande {self.commande}"
 
 class Facture(models.Model):
     dateFacture=models.DateField()
