@@ -1,0 +1,18 @@
+{% extends 'login.html'%}
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<div class="login-wrapper">
+    <form method="POST" class="form">
+      <img src="{%static 'assets/img/avatar.png' %}"  alt="img">
+      <h2>Login</h2>
+     {% csrf_token %}
+      {{ form|crispy }}
+      <input type="submit" value="Login" class="submit-btn">
+
+    </form>
+
+  </div>
+  {% include 'stock/include_footer.html' %}
+{%  endblock  %}

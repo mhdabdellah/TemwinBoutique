@@ -1,0 +1,206 @@
+{% extends 'base_message.html'%}
+{% load static %}
+
+{% block app_css %}
+    <link href="{% static 'chat/style.css' %}" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+    .message-item {
+	position:relative;
+	max-width: 75%;
+	word-break: break-word;
+}</style>
+{% endblock app_css %}
+
+{% block content %}
+<!-- <iframe id="iframe" src="C:\Users\Republic Of Computer\Documents\GitHub\StockManagementProject\templates\base_message.html" style="display: none;"></iframe> -->
+<div class="room-container__msg">
+    <!-- msg chat header -->
+    <div class="msg-header mat-elevation-z6">
+        <div class="h-avatar"><img src="{{other_user.profile.image.url}}"></div>
+        <div class="h-users">
+            <div class="h-user-group">{{other_user.username|title}}</div>
+            <div class="h-user-member">  {% if other_user.last_login%}{{other_user.last_login}}آخر ظهور{%else%}لم يتم الإتصال بعد{%endif%}</div>
+        </div>
+        <div class="h-search"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M15.9 14.3H15l-.3-.3c1-1.1 1.6-2.7 1.6-4.3 0-3.7-3-6.7-6.7-6.7S3 6 3 9.7s3 6.7 6.7 6.7c1.6 0 3.2-.6 4.3-1.6l.3.3v.8l5.1 5.1 1.5-1.5-5-5.2zm-6.2 0c-2.6 0-4.6-2.1-4.6-4.6s2.1-4.6 4.6-4.6 4.6 2.1 4.6 4.6-2 4.6-4.6 4.6z"></path></svg></div>
+        <div class="h-attach"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M1.816 15.556v.002c0 1.502.584 2.912 1.646 3.972s2.472 1.647 3.974 1.647a5.58 5.58 0 0 0 3.972-1.645l9.547-9.548c.769-.768 1.147-1.767 1.058-2.817-.079-.968-.548-1.927-1.319-2.698-1.594-1.592-4.068-1.711-5.517-.262l-7.916 7.915c-.881.881-.792 2.25.214 3.261.959.958 2.423 1.053 3.263.215l5.511-5.512c.28-.28.267-.722.053-.936l-.244-.244c-.191-.191-.567-.349-.957.04l-5.506 5.506c-.18.18-.635.127-.976-.214-.098-.097-.576-.613-.213-.973l7.915-7.917c.818-.817 2.267-.699 3.23.262.5.501.802 1.1.849 1.685.051.573-.156 1.111-.589 1.543l-9.547 9.549a3.97 3.97 0 0 1-2.829 1.171 3.975 3.975 0 0 1-2.83-1.173 3.973 3.973 0 0 1-1.172-2.828c0-1.071.415-2.076 1.172-2.83l7.209-7.211c.157-.157.264-.579.028-.814L11.5 4.36a.572.572 0 0 0-.834.018l-7.205 7.207a5.577 5.577 0 0 0-1.645 3.971z"></path></svg></div>
+        <div class="h-menu"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12 7a2 2 0 1 0-.001-4.001A2 2 0 0 0 12 7zm0 2a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 9zm0 6a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 15z"></path></svg></div>
+    </div>
+    <!-- msg chat header -->
+
+    <!-- msg box  -->
+    <div class="msg-box msg-box--background" >
+        <div style="display: grid;"><div class="date_weekday __web-inspector-hide-shortcut__">10/23/2020</div></div>
+        <div id="new-message-chat">
+            {% for messge in messages %}
+            {% if messge.sender == request.user%}
+            
+            <div class="right-msg-container">
+              
+               <div class="s-message message-item">
+                <div class="options">
+                    <a href="#">
+                        <!-- <i class="fas fa-angle-down text-muted px-2"></i> -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
+                            <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
+                          </svg>
+                    </a>
+                </div>
+                   <div class="s-msg"> {{messge.message}}</div>
+                   <div class="s-time">{{messge.date_created}}</div>
+               </div>
+               <div class="s-tail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 13" preserveAspectRatio="none" width="8" height="13"><path opacity=".5" d="M5.188 1H0v11.193l6.467-8.625C7.526 2.156 6.958 1 5.188 1z"></path><path fill="#dcf8c6ff" d="M5.188 0H0v11.193l6.467-8.625C7.526 1.156 6.958 0 5.188 0z"></path></svg></div>
+           </div>
+           {%else %}
+           <div class="left-msg-container">
+               <div class="r-tail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 13" width="8" height="13"><path opacity=".5" fill="#0000000" d="M1.533 3.568L8 12.193V1H2.812C1.042 1 .474 2.156 1.533 3.568z"></path><path fill="white" d="M1.533 2.568L8 11.193V0H2.812C1.042 0 .474 1.156 1.533 2.568z"></path></svg></div>
+               <div class="r-message" >
+                   <div class="r-user"><a href="#">{{messge.sender}}</a></div>
+                   <div class="r-msg">{{messge.message}}</div>
+                   <div class="r-time">{{messge.date_created}}</div>
+               </div>
+           </div>
+           {%endif %}
+           
+           {% endfor %}
+        </div>
+         
+    </div>
+    <!-- msg box -->
+
+    <!-- msg input -->
+    
+    <div class="msg-input">
+        
+        <div class="emoji">
+            <svg xmlns="http://www.w3.org/2000/svg"  width="24" height="24" id="smiley" x="3147" y="3209"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.153 11.603c.795 0 1.44-.88 1.44-1.962s-.645-1.96-1.44-1.96c-.795 0-1.44.88-1.44 1.96s.645 1.965 1.44 1.965zM5.95 12.965c-.027-.307-.132 5.218 6.062 5.55 6.066-.25 6.066-5.55 6.066-5.55-6.078 1.416-12.13 0-12.13 0zm11.362 1.108s-.67 1.96-5.05 1.96c-3.506 0-5.39-1.165-5.608-1.96 0 0 5.912 1.055 10.658 0zM11.804 1.01C5.61 1.01.978 6.034.978 12.23s4.826 10.76 11.02 10.76S23.02 18.424 23.02 12.23c0-6.197-5.02-11.22-11.216-11.22zM12 21.355c-5.273 0-9.38-3.886-9.38-9.16 0-5.272 3.94-9.547 9.214-9.547a9.548 9.548 0 0 1 9.548 9.548c0 5.272-4.11 9.16-9.382 9.16zm3.108-9.75c.795 0 1.44-.88 1.44-1.963s-.645-1.96-1.44-1.96c-.795 0-1.44.878-1.44 1.96s.645 1.963 1.44 1.963z" fill="#7d8489"/></svg>
+        </div>
+        <div class="type-a-message">
+            
+            <input id="chat-message-input" type="text" name="message" placeholder="Type a message"><br>
+        </div>
+        <div class="mic">
+        <button type="submit" id="send-btn">
+            <image src="{% static 'assets/img/mail-2573.svg' %}" width='30' height='30' />
+        </button>
+        </div>
+       
+    </div>
+
+    <!--  msg input -->
+
+</div>
+
+{% endblock %}
+{% block javascript %}
+<script>
+    let message_send_btn = document.getElementById('send-btn');
+    let message_input = document.getElementById('chat-message-input');
+    function sendMessage(){
+        let message= message_input.value;
+        if(message === ''){
+            return;
+        }
+        message_input.value="";
+        fetch('{% url "chat:ajax_load_messages" other_user.id %}',
+        {
+            method : "POST",
+            credentials :"same-origin",
+            headers : {
+                "Content-Type": "application/json",
+                "X-CSRFToken":'{{csrf_token}}',
+            },
+            body : JSON.stringify(message),
+        }
+ ).then(e => e.json()).then(messages =>{
+    for (message of messages) {
+        construct_message(message);
+    }
+ });
+ }
+function load_messages(){
+    let notification = document.getElementById('unread-count');
+    // let notify =document.createElement('div');
+    // let class_name ='flex-grow-1 text-right'
+    unread=[]
+    fetch('{% url "chat:ajax_load_messages" other_user.id %}')
+    .then(e => e.json())
+    .then(messages => {
+        console.log(messages)
+        
+        // var count=0;
+        for (message of messages){
+            
+            construct_message(message);
+            console.log(message)
+            
+            if(message.notification ==0){
+                notification.innerHTML =``
+   }
+   else{
+    // notification.each(function(i){
+    //           unread[i]=this.attr(key);
+    //         },
+   
+   let flex =document.getElementById(message.sender);
+   console.log(flex)
+   console.log(message.sender)
+    flex.innerHTML=`<div class="badge badge-success badge-pill small" id="unread-count" >${message.notification}</div>`
+   }
+   
+   
+   
+   console.log(notification)
+//    notify.classList.add(class_name)
+//    notification.appendChild(notify);
+        }
+    });
+}
+function construct_message(message){
+    let messages_container = document.querySelector('#new-message-chat');
+    
+    let notification = document.querySelector('#notification')
+    let class_name ='left'
+    let div = document.createElement('div');
+    if(message.sent){
+        class_name ='right'
+
+    
+    
+    
+    div.innerHTML = `<div class="right-msg-container">
+               <div class="s-message">
+                   <div class="s-msg"> ${message.message}</div>
+                   <div class="s-time">${message.date_created}</div>
+               </div>
+               <div class="s-tail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 13" preserveAspectRatio="none" width="8" height="13"><path opacity=".5" d="M5.188 1H0v11.193l6.467-8.625C7.526 2.156 6.958 1 5.188 1z"></path><path fill="#dcf8c6ff" d="M5.188 0H0v11.193l6.467-8.625C7.526 1.156 6.958 0 5.188 0z"></path></svg></div>
+           </div>`;
+   }  
+   else{
+    div.innerHTML = `<div class="left-msg-container">
+               <div class="r-tail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 13" width="8" height="13"><path opacity=".5" fill="#0000000" d="M1.533 3.568L8 12.193V1H2.812C1.042 1 .474 2.156 1.533 3.568z"></path><path fill="white" d="M1.533 2.568L8 11.193V0H2.812C1.042 0 .474 1.156 1.533 2.568z"></path></svg></div>
+               <div class="r-message" >
+                   <div class="r-user"><a href="#">${message.sender}</a></div>
+                   <div class="r-msg">${message.message}</div>
+                   <div class="r-time">${message.date_created}</div>
+               </div>
+           </div>`;
+   }
+  
+//    if(message.notification !=0){
+//        notify.innerHTML =`<div class="badge badge-success badge-pill small" id="unread-count"></div>`
+//    }
+//    else{
+//        notify.innerHTML=`<div class="badge badge-success badge-pill small" id="unread-count">${message.notification}</div>`
+//    }
+   div.classList.add(class_name)
+               messages_container.appendChild(div);
+               div.scrollIntoView();
+    
+               
+              
+}
+
+message_send_btn.addEventListener('click',sendMessage);
+    setInterval(load_messages, 2000);
+</script>
+{% endblock javascript %}

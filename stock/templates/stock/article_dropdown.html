@@ -1,0 +1,7 @@
+{% if articles %}
+    {%for article in articles %}
+    <option value="{{article.id}}">{{ article.nom }}</option>
+    {%endfor %}
+{% else %}
+<option>---</option>
+{% endif %}

@@ -1,0 +1,139 @@
+{% extends 'base.html'%}
+{% block content %}}
+{% load crispy_forms_tags %}
+
+<div class="content-wrapper">
+
+        <div class="container-fluid">
+
+            <!--page title-->
+            <div class="page-title mb-4 d-flex align-items-center">
+                <div class="mr-auto">
+                    <h4 class="weight500 d-inline-block pr-3 mr-3 border-right">List Des Stocks</h4>
+                    <nav aria-label="breadcrumb" class="d-inline-block ">
+                        <ol class="breadcrumb p-0">
+                            <li class="breadcrumb-item"><a href="{% url 'stock:home' %}">Accueil</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'stock:stockform' %}">Ajouter nouvelle Stock</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">List des stocks</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <!--/page title-->
+                   <div class="row">
+                <div class="col-xl-12">
+                      <div class="card card-shadow mb-4 ">
+                            <div class="card-header border-0">
+                                <div class="custom-title-wrap bar-warning">
+                                    <div class="custom-title">LIST DES STOCKS </div>
+                                    <div class=" widget-action-link">
+                                      {% if request.user.is_staff %}
+
+                                        <div class="dropdown">
+                                            <a href="#" class="btn btn-transparent text-secondary dropdown-hover p-0" data-toggle="dropdown">
+                                                Action <i class="fa fa-caret-down pl-2"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right vl-dropdown">
+                                                 <a class="dropdown-item" href="{% url 'stock:home' %}">Accueil</a>
+                                                <a class="dropdown-item" href="{% url 'stock:stockform' %}"> Ajouter nouvelle Stock</a>
+                                                <a class="dropdown-item" href="table_stock"> List des stocks</a>
+                                            </div>
+                                        </div>
+                                         {%endif%}
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        <div class="card-body- pt-3 pb-4">
+                            <div class="table-responsive">
+                                <table id="data_table" class="table table-bordered table-striped" cellspacing="0">
+
+                                    <thead>
+
+                                        <tr>
+                                                <th scope="col">LA QUANTITE DE STOCK</th>
+                                                <th scope="col">L'UTILISATEUR</th>
+                                                <th scope="col">CATEGORIE</th>
+                                                <th scope="col">ARTICLE</th>
+                                                <th scope="col">MODIFIER</th>
+                                                <th scope="col">SUPRIMER</th>
+                                        </tr>
+                                        </thead>
+                                    <!-- <tfoot>
+
+                                    <tr>
+                                         <th scope="col" clospan="7"></th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                            <th scope="col"> </th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                            <th scope="col"> </th>
+                                    </tr>
+                                    </tfoot> -->
+                                    <tbody>
+                                        {% for stock in tstock %}
+                                        <tr>
+                                            <!-- <td class="action-checkbox">
+
+                                                   {% if request.user.is_staff %}
+                                                             <input type="checkbox" name="_selected_action" value="2" class="action-select">
+                                                   {%endif%}
+
+
+
+                                                <img class="rounded-circle mr-3 table-thumb" src="{{request.user.profile.image.url}}" width="30px"  alt=""/>
+
+                                            </td> -->
+                                            <td scope="row"> {{stock.qtStock}} </td>
+                                            <td scope="row">{{stock.user}}</td>
+                                            <td scope="row">{{stock.categorie}}</td>
+                                            <td scope="row">
+                                                
+                                                <div class="container">
+                                                    <div class="row">
+                                                        {% for article in stock.article.all%}
+                                                        <div class="col-6 col-md-4">
+                                                            {{article.nom}}
+                                                          </div>
+                                                      
+                                                      {%endfor%}
+                                                    </div>
+                                                    
+                                            </td>
+                                            <th>
+                                                <a href="update_stock/{{stock.id}}"class="btn btn-primary mb-2 btn-success" > Modifier</a>
+                                              </th>
+                                             <th>
+                                                 <a href="delete_stock/{{stock.id}}" class="btn btn-primary mb-2 btn-success" >Supprimer</a>
+                                         
+                                             </th>
+
+                                            
+
+
+                                        </tr>
+
+                                        {%endfor%}
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+<!--    footer -->
+     {% include 'stock/include_footer.html' %}
+
+
+
+    </div>
+
+{% endblock content %}

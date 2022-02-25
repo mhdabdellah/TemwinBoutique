@@ -1,0 +1,78 @@
+{% extends 'base.html'%}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+
+
+<div class="row">
+                <div class="col-xl-12">
+                      <div class="card card-shadow mb-4 ">
+                            <div class="card-header border-0">
+                                <div class="custom-title-wrap bar-warning">
+                                 <div class="custom-title">LA FACTURE </div>
+                                </div>
+                            </div>
+                        </div>
+
+     <div class="modal-footer">
+        <form method="POST">
+            {% csrf_token %}
+            <h2> etez vous sure de Supprimer cette facture</h2>
+            {{facture.User}}
+  <table id="data_table" class="table table-bordered table-striped" cellspacing="0">
+
+    <thead>
+
+    <tr>
+       <!-- <th scope="col">UTILISATEUR </th> -->
+       <th scope="col" >categorie</th>
+       <th scope="col">article</th>
+       <th scope="col">prix</th>
+       <!-- <th scope="col">DATE DE FACTURE</th> -->
+    </tr>
+    </thead>
+    <tbody>
+        {%for item in facture.sorties.all %}
+
+        <tr>
+            <!-- <td scope="col" rowspan="{{facture.sorties.all.count}}" > {{facture.User}} </td> -->
+           
+            <td scope="row">{{item.categorie}}</td>
+            <td scope="row">{{item.article}}</td>
+            <td scope="row">{{item.prix_sortie}}</td>
+
+
+           
+            <!-- <td scope="row" rowspan="{{facture.sorties.all.count}}">{{facture.dateFacture}}</td> -->
+        </tr>
+        {%endfor %}
+        <tr>
+          <th scope="row" colspan="6">LA PRIX TOTAL DES SORTIES     {{facture.totalprix}}  <span>N-UM</span></th>
+      </tr>
+      <tr>
+     </tr>
+     <tr>
+      <td scope="row" colspan="6"> Nouakchott a {{facture.dateFacture}}</td>
+   </tr>
+    </tbody>
+
+</table>
+      
+            
+      <button type="submit" class="btn btn-default p-2 " data-dismiss="modal">
+        confirmer
+       </button>
+        
+        </form>
+
+
+        <!--   endform         -->
+    </div>
+  </div>
+</div>
+          <!--  </div>-->
+   
+          </div>
+{% endblock content %}
+{% include 'stock/include_footer.html' %}

@@ -1,0 +1,135 @@
+{% extends 'base.html'%}
+{% block content %}}
+{% load crispy_forms_tags %}
+
+<div class="content-wrapper">
+
+        <div class="container-fluid">
+
+            <!--page title-->
+            <div class="page-title mb-4 d-flex align-items-center">
+                <div class="mr-auto">
+                    <h4 class="weight500 d-inline-block pr-3 mr-3 border-right">Table Utilisateur</h4>
+                    <nav aria-label="breadcrumb" class="d-inline-block ">
+                        <ol class="breadcrumb p-0">
+                            <li class="breadcrumb-item"><a href="{% url 'stock:home' %}">Accueil</a></li>
+                            <li class="breadcrumb-item"><a href="">table de stock</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">table de categorie</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <!--/page title-->
+                   <div class="row">
+                <div class="col-xl-12">
+                      <div class="card card-shadow mb-4 ">
+                            <div class="card-header border-0">
+                                <div class="custom-title-wrap bar-warning">
+                                    <div class="custom-title">Tables des utilisateur</div>
+                                    <div class=" widget-action-link">
+                                      {% if request.user.is_staff %}
+
+                                        <div class="dropdown">
+                                            <a href="#" class="btn btn-transparent text-secondary dropdown-hover p-0" data-toggle="dropdown">
+                                                Action <i class="fa fa-caret-down pl-2"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right vl-dropdown">
+                                                 <a class="dropdown-item" href="{% url 'accounts:signup'%}">Ajout de utilisateur</a>
+                                                <a class="dropdown-item" href="#"> Move to another group</a>
+                                                <a class="dropdown-item" href="#"> Delete</a>
+                                                <a class="dropdown-item" href="#"> Modifier</a>
+                                                <a class="dropdown-item" href="#"> Send Message</a>
+                                            </div>
+                                        </div>
+                                         {%endif%}
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        <div class="card-body- pt-3 pb-4">
+                            <div class="table-responsive">
+                                <table id="data_table" class="table table-bordered table-striped" cellspacing="0">
+
+                                    <thead>
+
+                                        <tr>
+                                           <th scope="col"></th>
+                                                <th scope="col">NUMERO</th>
+                                                <th scope="col">NOM</th>
+                                                <th scope="col">DESCRIPTION</th>
+                                                <th scope="col">CATEGORIE</th>
+                                                <th scope="col">LA QUANTITE DISPONIBLE</th>
+                                                <th scope="col">LA PRIX D'ACHAT</th>
+                                                <th scope="col">LA DATE D'ENTRER</th>
+                                                <th scope="col">MODIFIER</th>
+                                                <th scope="col">SUPRIMER</th>
+                                        </tr>
+                                        </thead>
+                                    <!-- <tfoot>
+
+                                    <tr>
+                                         <th scope="col" clospan="7"></th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                            <th scope="col"> </th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                            <th scope="col"> </th>
+                                    </tr>
+                                    </tfoot> -->
+                                    <tbody>  
+                                        {% for article in results.all %}
+                                        <tr>
+                                            <td class="action-checkbox">
+
+                                                   {% if request.user.is_staff %}
+                                                             <input type="checkbox" name="_selected_action" value="2" class="action-select">
+                                                   {%endif%}
+
+
+
+                                                <img class="rounded-circle mr-3 table-thumb" src="{{request.user.profile.image.url}}" width="30px"  alt=""/>
+
+                                            </td>
+                                            <td scope="row"> {{article.numero}} </td>
+                                            <td scope="row">{{article.nom}}</td>
+                                            <td scope="row">{{article.description}}</td>
+                                            <td scope="row">{{article.categorie}}</td>
+                                            <td scope="row">{{article.qtStock}}</td>
+                                            <td scope="row">{{article.prix_achat}}</td>
+                                            <td scope="row">{{article.date_entree}}</td>
+                                            <th>
+                                                <a href="#" class="btn btn-primary mb-2 btn-success" >Modifier</a>
+                                              </th>
+                                             <th>
+                                                 <a href="#" class="btn btn-primary mb-2 btn-success" >Supprimer</a>
+                                         
+                                             </th>
+
+                                            
+
+
+                                        </tr>
+
+                                        {%endfor%}
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+<!--    footer -->
+     {% include 'stock/include_footer.html' %}
+
+
+
+    </div>
+
+{% endblock content %}

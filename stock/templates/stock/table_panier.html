@@ -1,0 +1,38 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="container"><h1><B><i>LIST DES PAGNIER </i></B></h1></div>
+
+<div class="block container">
+    
+    <table class="table table-hover btn-success btn-primary mb-6">
+        <thead>
+            <th scope="col">LA COMMANDE</th>
+            <th scope="col">L'ARTICLE</th>
+            <th scope="col">LA QUANTITE </th>
+            <th scope="col" colspan=2>Actions</th>
+        </thead>
+{% for pagnier in tpanier %}
+
+        <tbody>    
+            <tr>
+                <td scope="row"> {{pagnier.commande}} </td>
+                <td scope="row">{{pagnier.article}}</td>
+                <td scope="row">{{pagnier.qte}}</td>
+                <th>
+                   <a href="#" class="btn btn-primary mb-2 btn-success" >Modifier</a>
+                 </td>
+                <th>
+                    <a href="#" class="btn btn-primary mb-2 btn-success" >Supprimer</a>
+            
+                </td>
+             </tr>	
+                
+    
+
+{% endfor %}
+         </tbody>
+    </table>
+</div>
+{% include 'stock/include_footer.html' %}
+{% endblock content %}

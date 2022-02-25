@@ -1,0 +1,10 @@
+{% if stocks %}
+    <option selected>إختر الأستوك</option>
+    {%for st in stocks %}
+
+    <!-- <option selected>أختر الاستوك</option> -->
+    <option value="{{st.id}}">{{ st.qtStock}}</option>
+    {%endfor %}
+{% else %}
+<option>---</option>
+{% endif %}

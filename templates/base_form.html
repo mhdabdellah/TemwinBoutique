@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<!-- Mirrored from thevectorlab.net/dashlab-v1.3/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Feb 2019 05:37:41 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Mosaddek">
+
+    <!--favicon icon-->
+    <link rel="icon" type="image/png" href="{% static 'assets/img/favicon.html' %}">
+
+    {% if title %}
+    <title> {{title}}</title>
+    {% else %}
+    <title>title</title>
+    {% endif %}
+     <!--    icon-->
+     <!--     <link rel="shortcut icon" href="{% static 'blog/images/favicon.ico' %}">-->
+
+    <!--web fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+
+    <!--bootstrap styles-->
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!--icon font-->
+    <link href="{% static 'assets/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/dashlab-icon/dashlab-icon.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/simple-line-icons/css/simple-line-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/themify-icons/css/themify-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/weather-icons/css/weather-icons.min.css' %}" rel="stylesheet">
+
+    <!--custom scrollbar-->
+    <link href="{% static 'assets/vendor/m-custom-scrollbar/jquery.mCustomScrollbar.css' %}" rel="stylesheet">
+
+    <!--jquery dropdown-->
+    <link href="{% static 'assets/vendor/jquery-dropdown-master/jquery.dropdown.css' %}" rel="stylesheet">
+
+    <!--jquery ui-->
+    <link href="{% static 'assets/vendor/jquery-ui/jquery-ui.min.css' %}" rel="stylesheet">
+
+    <!--iCheck-->
+    <link href="{% static 'assets/vendor/icheck/skins/all.css' %}" rel="stylesheet">
+
+    <!--vector maps -->
+    <link href="{% static 'assets/vendor/vector-map/jquery-jvectormap-1.1.1.css' %}" rel="stylesheet" >
+
+    <!--c3chart-->
+    <link href="{% static 'assets/vendor/c3chart/c3.min.css' %}" rel="stylesheet">
+
+        <!--data table-->
+    <link href="{% static 'assets/vendor/data-tables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+
+    <!--custom styles-->
+    <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="{% static 'assets/vendor/html5shiv.js' %}"></script>
+    <script src="{% static 'assets/vendor/respond.min.js' %}"></script>
+    <![endif]-->
+</head>
+<body>
+
+
+
+
+
+
+
+
+    <!--         strarblock       -->
+
+     {% block content%}
+     {% endblock content%}
+
+    <!--          endblock  -->
+
+
+
+<!--basic scripts-->
+    <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/jquery-ui/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/popper.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <script src="{% static 'assets/vendor/jquery-dropdown-master/jquery.dropdown.js' %}"></script>
+
+
+    <script src="{% static 'assets/vendor/m-custom-scrollbar/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/icheck/skins/icheck.min.js' %}"></script>
+
+     <!--datatables-->
+    <script src="{% static 'assets/vendor/data-tables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/data-tables/dataTables.bootstrap4.min.js' %}"></script>
+
+    <!--sparkline-->
+    <script src="{% static 'assets/vendor/sparkline/jquery.sparkline.js' %}"></script>
+    <!--sparkline initialization-->
+    <script src="{% static 'assets/vendor/js-init/sparkline/init-sparkline.js' %}"></script>
+    <script src="{% static 'assets/vendor/js-init/init-datatable.js' %}"></script>
+
+
+    <!--c3chart-->
+    <script src="{% static 'assets/vendor/c3chart/d3.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/c3chart/c3.min.js' %}"></script>
+    <!--c3chart initialization-->
+    <script src="{% static 'assets/vendor/js-init/c3chart/init-c3chart.js' %}"></script>
+
+    <!--chartjs-->
+    <script src="{% static 'assets/vendor/chartjs/Chart.bundle.min.js' %}"></script>
+    <!--chartjs initialization-->
+    <script src="{% static 'assets/vendor/js-init/chartjs/init-creative-state-chart.js' %}"></script>
+    <script src="{% static 'assets/vendor/js-init/chartjs/init-area-chart.js' %}"></script>
+    <script src="{% static 'assets/vendor/js-init/chartjs/init-line-chart.js' %}"></script>
+    <script src="{% static 'assets/vendor/js-init/chartjs/init-doughnut-chart.js' %}"></script>
+    <script src="{% static 'assets/vendor/js-init/chartjs/init-doughnut-chart2.js' %}"></script>
+    <script src="{% static 'assets/vendor/js-init/chartjs/init-sales-report-chart.js' %}"></script>
+    <script src="{% static 'assets/vendor/js-init/chartjs/init-bubble-chart.js' %}"></script>
+
+    <!--flot chart-->
+    <script src="{% static 'assets/vendor/flot/jquery.flot.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/flot/jquery.flot.pie.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/flot/jquery.flot.tooltip.min.js' %}"></script>
+    <!--flot chart initialization-->
+    <script src="{% static 'assets/vendor/js-init/flot/init-flot-widget.js' %}"></script>
+
+      <!--init ajax datatable-->
+    <script src="{% static 'assets/vendor/js-init/init-ajax-datatable.js' %}"></script>
+
+    <!--vectormap-->
+    <script src="{% static 'assets/vendor/vector-map/jquery-jvectormap-1.2.2.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/vector-map/jquery-jvectormap-world-mill-en.js' %}"></script>
+    <!--vectormap initialization-->
+    <script src="{% static 'assets/vendor/js-init/vmap/init-vmap-world.js' %}"></script>
+
+    <!--[if lt IE 9]>
+    <script src="{% static 'assets/vendor/modernizr.js' %}"></script>
+    <![endif]-->
+
+    <!--basic scripts initialization-->
+    <script src="{% static 'assets/js/scripts.js' %}"></script>
+</body>
+
+<!-- Mirrored from thevectorlab.net/dashlab-v1.3/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Feb 2019 05:38:32 GMT -->
+</html>

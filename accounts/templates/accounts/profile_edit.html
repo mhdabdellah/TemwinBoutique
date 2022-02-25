@@ -1,0 +1,57 @@
+{% extends 'base.html'%}
+{% block content %}
+{% load crispy_forms_tags %}
+
+
+<div class="container">
+   <div class="row">
+  <div class="col-md-3">
+    <div class="card card-body">
+      <a class="btn btn-warning" href="{% url 'accounts:profile'%}"> &#8592; Retourne au profile</a>
+      <hr>
+      <h3 style="text-align: center">Change Profile</h3>
+      <hr>
+      <img class="profile-pic" src="{{request.user.profile.image.url}}" >
+
+    </div>
+  </div>
+
+
+  <!-- Trigger the modal with a button -->
+<!--  <button type="button" class="btn btn-info p-2 btn-md" data-toggle="modal" data-target="#myModal" title="Ajouter Equipement">+</button>-->
+
+  <!-- Modal -->
+<!--  <div class="modal fade" id="myModal" role="dialog">-->
+
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-body">
+
+
+          <!--    form      -->
+      <form method="POST" enctype="multipart/form-data">
+           {% csrf_token %}
+              {{ userform|crispy }}
+
+          {{ profileform|crispy }}
+
+ <input type="submit" class="btn btn-purple float-right" value="Valider">
+<!--                  <div class="mt-6">-->
+<!--                       <button type="submit" class="btn btn-primary p-2 pl-4 pr-4">Add</button>-->
+<!--                    <button type="reset" class="btn btn-outline-secondary p-2">Cancel</button>-->
+<!--                  </div>-->
+
+      </form>
+        </div>
+
+
+
+          <!--   endform         -->
+      </div>
+    </div>
+
+<!--  </div>-->
+</div>
+
+{%  endblock  %}

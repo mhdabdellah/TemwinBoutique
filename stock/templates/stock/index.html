@@ -1,0 +1,682 @@
+{% extends 'base.html'%}
+
+    
+
+{% block content %}
+
+  <!--main content wrapper-->
+  <div class="content-wrapper m-0">
+
+    <div class="container-fluid">
+
+  {% if request.user.is_staff and request.user.is_superuser %}
+  <div class="content-wrapper">
+        
+            <!-- <div class="container-fluid"> -->
+        <!--creative states-->
+<!--          creative-state-area-->
+
+        <div class="container-fluid  mt-3 mb-5 pt-5">
+            <div class="row">
+                <div class="col-lg-7 col-12">
+                    
+                        <!-- if list_quip.count|sub:list_installation.count < 5  -->
+                       
+                  
+                    <h3 class="text-info">
+                        Tableau de bord
+                        <!-- list_quip.count|sub:list_installation.count  -->
+                    </h3>
+                    
+                         <!-- endif -->
+                    
+                        <!-- messages -->
+                       
+                            <!-- for message in messages -->
+                        <div class="alert alert-{{message.tags}}">
+                           
+                          
+                        </div>
+                        
+
+                </div>
+                <div class="col-lg-5  col-12 text-lg-right">
+                    <div class="row short-states mb-lg-0 mb-4">
+                    </div>
+                </div>
+
+               
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="creative-state-icon bg-danger text-center pull-left">
+                          <div class="preview">  <i class="ti-shopping-cart"></i> </div>
+                    </div>
+                    <div class="creative-state-info text-center pull-left">
+                        <a href="{% url 'stock:sortir_article'%}">
+                            
+                        <h3 class="mt-4"> Sortir Des Articles-إخراج  </h3>
+                       
+                        </a>
+                        <div class=" widget-action-link">
+<!--                            <small class="text-success weight700">5% <i class="fa fa-long-arrow-up"></i></small>-->
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="creative-state-icon bg-danger text-center pull-left">
+                        <i class="vl_clip-board"></i>
+                    </div>
+                    <div class="creative-state-info text-center pull-left">
+                        <a href="{%url 'stock:table_categorie'%}">  
+                            <!-- url 'equip:table_equipement' -->
+                            
+                        <h3 class="mt-4">{{categorie.count}}</h3>
+                        <p class="mb-0">TOTALE CATEGORIE</p>
+                         </a>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="creative-state-icon bg-warning text-center pull-left">
+                          <div class="preview col-sm-6 col-md-4 col-lg-3"><i class="ti-view-list"></i></div>
+                    </div>
+                    <div class="creative-state-info text-center pull-left">
+                        <a href="{%url 'stock:table_article'%}">  
+                            <!-- url 'install:table_installation'  -->
+                           
+                        <h3 class="mt-4">{{article.count}} </h3>
+                        <p class="mb-0">totale articles</p>
+                        </a>
+                        <div class=" widget-action-link">
+                              
+                                <!-- if list_quip.count == 0  -->
+                              
+
+
+                            
+                                 <!-- else  -->
+                                
+                                <small class="text-success weight700" title="pourcentage installation">
+                                   <!-- list_installation.count|div:list_quip.count|mul:100|floatformat:2 -->
+                                  
+<!--                               <i class="fa fa-long-arrow-up"></i>-->
+                           </small>
+
+                          
+                                 <!-- endif -->
+                               
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="creative-state-icon bg-danger text-center pull-left">
+                          <div class="preview">  <i class="ti-shopping-cart"></i> </div>
+                    </div>
+                    <div class="creative-state-info text-center pull-left">
+                        <a href="{% url 'stock:table_sortir'%}">
+                            
+                        <h3 class="mt-4">{{sortir.count}}</h3>
+                        <p class="mb-0">TOTALE Articles Sorties</p>
+                       
+                        </a>
+                        <div class=" widget-action-link">
+<!--                            <small class="text-success weight700">5% <i class="fa fa-long-arrow-up"></i></small>-->
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="creative-state-icon bg-purple text-center pull-left">
+                          <div class="preview"> <i class="icon-social-dropbox"></i>  </div>
+                    </div>
+                    
+                    <div class="creative-state-info text-center pull-left">
+
+                         <a href="{%url 'stock:table_stock'%}">
+                             <!-- {%
+                                  url 'equip:category_table'
+                                  %} {% if request.user.is_staff %} {% else %} {% endif %} -->
+                                  
+                        <h3 class="mt-4"> {{stock.count}} </h3>
+                        <p class="mb-0">totale Stocks</p>
+                        </a> 
+                        
+                        <div class=" widget-action-link">
+<!--                            <small class="text-success weight700">5% <i class="fa fa-long-arrow-up"></i></small>-->
+                        </div>
+
+                    </div>
+                </div>
+                 
+
+
+                 <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="creative-state-icon bg-purple text-center pull-left">
+                          <div class="preview">  <i class="vl_user-male"></i> </div>
+                    </div>
+                    <div class="creative-state-info text-center pull-left">
+                        <a href="{%url 'stock:table_users'%}">
+                            
+                        <h3 class="mt-4"> {{user.count}} </h3>
+                        <p class="mb-0">totale utilisateur</p>
+                        </a>
+                        <div class=" widget-action-link">
+<!--                            <small class="text-success weight700">5% <i class="fa fa-long-arrow-up"></i></small>-->
+                        </div>
+
+                    </div>
+                </div>
+                
+
+            </div>
+
+        </div>
+
+    <!--creative states-->
+
+            <div class="container-fluid">
+            <div class="row">
+                    <div class="col-xl-6 col-md-6">
+                        <div class="card card-shadow mb-4">
+                            <div class="card-header border-0">
+                                <div class="custom-title-wrap bar-danger">
+                                    <div class="custom-title">
+                                        Statistique
+                                        <ul class="nav nav-pills nav-pill-primary nav-pill-custom nav-pills-sm float-right " id="pills-tab2" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="pills-today-tab2" data-toggle="pill" href="#pills-weekly2" role="tab" aria-selected="true">Nombre</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="pills-month-tab2" data-toggle="pill" href="#pills-month2" role="tab" aria-selected="false">Pourcentage</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="custom-post-title">Statistique etat du Stock</div>
+                                </div>
+                            </div>
+                            <div class="card-body pt-5 pb-4">
+                                <div class="tab-content" id="pills-tabContent2">
+                                    <div class="tab-pane fade show active" id="pills-weekly2" role="tabpanel" aria-labelledby="pills-today-tab">
+                                        <div class="row">
+                                            <div class="col-12 col-xl-67 col-md-78 text-center">
+                                                <canvas id="doughnut_chart" class="mb-4" ></canvas>
+                                                <small class="text-muted">Realtime data update instantly</small>
+                                            </div>
+                                            <div class="col-12 col-xl-12 col-md-6 text-muted mt-xl-4">
+                                                <ul class="list-unstyled f12">
+                                                    <!-- <li class="list-widget-border mb-3 pb-3">
+                                                        <i class="fa fa-circle pr-2" style="color: #cae59b"></i> equipement_service.count
+                                                        <span class="float-right">En service</span>
+
+                                                    </li> -->
+                                                    <li class="list-widget-border mb-3 pb-3">
+                                                        <i class="fa fa-circle pr-2" style="color: #cae59b"></i> {{user.count}}
+                                                        <span class="float-right">les utilisateurs En service</span>
+                                                    </li>
+                                                    <!-- <li class="list-widget-border mb-3 pb-3">
+                                                        <i class="fa fa-circle pr-2" style="color: #fcdd82"></i> equipement_panne.count|add:equipement_service.count|sub:list_quip.count|abs
+                                                        <span class="float-right">Non attribut</span>
+                                                    </li> -->
+                                                    <li class="list-widget-border mb-3 pb-3">
+                                                        <i class="fa fa-circle pr-2" style="color: #fcdd82"></i> {{stock.count}}
+                                                        <span class="float-right">les stock</span>
+                                                    </li>
+                                                    <!-- <li class="list-widget-border mb-3 pb-3">
+                                                        <i class="fa fa-circle pr-2 " style="color: #f79490"></i> equipement_panne.count
+                                                        <span class="float-right">En panne</span>
+                                                    </li> -->
+                                                    <li class="list-widget-border mb-3 pb-3">
+                                                        <i class="fa fa-circle pr-2 " style="color: #f79490"></i> {{article.count}}
+                                                        <span class="float-right">Les Articles Disponible dans les stock</span>
+                                                    </li>
+                                                    <li class="list-widget-border mb-3 pb-3">
+                                                        <i class="fa fa-circle pr-2 " style="color: #08daff"></i> {{categorie.count}}
+                                                        <span class="float-right">Les Categories Disponible dans les stock</span>
+                                                    </li>
+                                                    <li class="list-widget-border mb-3 pb-3">
+                                                        <i class="fa fa-circle pr-2 " style="color: #350200"></i> {{sortir.count}}
+                                                        <span class="float-right">Les  Articles sorties </span>
+                                                    </li>
+
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="pills-month2" role="tabpanel" aria-labelledby="pills-month-tab">
+                                        <div class="row">
+                                            <div class="col-12 col-xl-7 col-md-6 text-center">
+                                                <canvas id="doughnut_chart2" class="mb-4"></canvas>
+                                                <small class="text-muted">Realtime data update instantly</small>
+                                            </div>
+                                            <div class="col-12 col-xl-4 col-md-6 text-muted mt-xl-4">
+                                               <ul class="list-unstyled f12">
+                                                    <li class="list-widget-border mb-3 pb-3">
+                                                               <!-- {% if list_quip.count == 0 %} -->
+
+
+                                                              <!-- {% else %} -->
+                                                        <i class="fa fa-circle pr-2" style="color: #cae59b"></i> equipement_service.count|div:list_quip.count|mul:100|floatformat:2%
+                                                        <span class="float-right">En service</span>
+                                                            <!-- {% endif %} -->
+                                                    </li>
+                                                    <li class="list-widget-border mb-3 pb-3">
+                                                            <!-- {% if list_quip.count == 0 %} -->
+
+
+                                                            <!-- {% else %} -->
+                                                        <i class="fa fa-circle pr-2" style="color: #fcdd82"></i> equipement_panne.count|add:equipement_service.count|sub:list_quip.count|abs|div:list_quip.count|mul:100|floatformat:2%
+                                                        <span class="float-right">Non attribut</span>
+                                                        <!-- {% endif %} -->
+                                                    </li>
+                                                    <li class="list-widget-border mb-3 pb-3">
+                                                               <!-- {% if list_quip.count == 0 %} -->
+
+
+                                                              <!-- {% else %} -->
+                                                        <i class="fa fa-circle pr-2 " style="color: #f79490"></i> equipement_panne.count|div:list_quip.count|mul:100|floatformat:2%
+                                                        <span class="float-right">En panne</span>
+                                                            <!-- {% endif %} -->
+                                                    </li>
+
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+<!--                autre-->
+
+<!--                col-xl-6-->
+                   <div class=" col-xl-6 col-md-6">
+                    <div class="card card-shadow mb-4 ">
+                        <div class="card-header border-0">
+                            <div class="custom-title-wrap bar-danger">
+                                <div class="custom-title">
+                                    Statistique Direction
+                                    <a href="javascript:;" class="btn-ordering btn-primary float-right ml-2">
+                                        <i class="fa fa-sort-alpha-asc"></i>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="pills-today" role="tabpanel" aria-labelledby="pills-today-tab">
+                                    <ul class="list-unstyled mb-0 list-widget">
+                                         <!-- {% for n in list_direction %} -->
+                                        <li>
+                                            <div class="media mb-4">
+
+                                                <div class="media-body list-widget-border">
+                                                    <div class="float-left">
+                                                        <h6 class="text-uppercase mb-0">n.Nom</h6>
+                                                        <span>nombre des equipements installe </span>
+                                                    </div>
+                                                    <div class=" float-right">
+                                                        <strong>n.nomD.count <i class="fa fa-level-up text-success pl-2"></i></strong>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                        <!-- {% endfor %} -->
+                                              <!-- {%if list_direction.has_other_pages%} -->
+
+                                              <div class="container" >
+                                                  <ul class="pagination" style="margin-left: 20px">
+                                                    <!-- {%if list_direction.has_previous%} -->
+                                                      <li class="page-item"><a class="page-link" href="">
+                                                        <!-- ?page={{list_direction.previous_page_number}}   -->
+                                                        <i class="ti-angle-left"></i></a></li>
+                                                    <!-- {%endif%} -->
+
+                                                    <!-- {%for i in list_direction.paginator.page_range %} -->
+                                                       <li class="page-item"><a class="page-link"href="?page={{i}}"><span>i</span></a></li>
+                                                     <!-- {%endfor%} -->
+                                                    <!-- {%if list_direction.has_next%} -->
+                                                      <li class="page-item"><a class="page-link" href="">
+                                                        <!-- ?page={{list_direction.next_page_number}} -->
+                                                        <i class="ti-angle-right"></i></a></li>
+                                                    <!-- {%endif%} -->
+                                                  </ul>
+                                              </div>
+
+                                    <!-- {%endif%} -->
+
+
+                                    </ul>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+<!--                auterjki-->
+
+                    </div>
+                </div>
+            </div>
+
+        <!--/creative states-->
+        {% else %}
+
+              {% if request.user.is_staff %}
+
+        <div class="content-wrapper">
+        
+            <!-- <div class="container-fluid"> -->
+        <!--creative states-->
+<!--          creative-state-area-->
+
+        <div class="container-fluid  creative-state-area btn-primary mt-5 pt-8">
+            <div class="row">
+                <div class="col-lg-7 col-12">
+                    
+                        <!-- if list_quip.count|sub:list_installation.count < 5  -->
+                       
+                  
+                    <h3 class="text-center">
+                        Tableau de bord
+                        <!-- list_quip.count|sub:list_installation.count  -->
+                    </h3>
+                    
+                         <!-- endif -->
+                    
+                        <!-- messages -->
+                       
+                            <!-- for message in messages -->
+                        <div class="alert alert-{{message.tags}}">
+                           
+                          
+                        </div>
+                        
+
+                </div>
+                <div class="col-lg-5  col-12 text-lg-right">
+                    <div class="row short-states mb-lg-0 mb-4">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="creative-state-icon bg-danger text-center pull-left">
+                          <div class="preview">  <i class="ti-shopping-cart"></i> </div>
+                    </div>
+                    <div class="creative-state-info text-center pull-left">
+                        <a href="{% url 'stock:sortir_article'%}">
+                            
+                        <h3 class="mt-4"> Sortir Des Articles-إخراج  </h3>
+                       
+                        </a>
+                        <div class=" widget-action-link">
+<!--                            <small class="text-success weight700">5% <i class="fa fa-long-arrow-up"></i></small>-->
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="creative-state-icon bg-danger text-center pull-left">
+                        <i class="vl_clip-board"></i>
+                    </div>
+                    <div class="creative-state-info text-center pull-left">
+                        <a href="{%url 'stock:table_categorie'%}">  
+                            <!-- url 'equip:table_equipement' -->
+                            
+                        <h3 class="mt-4">{{categorie.count}}</h3>
+                        <p class="mb-0">TOTALE CATEGORIE</p>
+                         </a>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="creative-state-icon bg-warning text-center pull-left">
+                          <div class="preview col-sm-6 col-md-4 col-lg-3"><i class="ti-view-list"></i></div>
+                    </div>
+                    <div class="creative-state-info text-center pull-left">
+                        <a href="{%url 'stock:table_article'%}">  
+                            <!-- url 'install:table_installation'  -->
+                           
+                        <h3 class="mt-4">{{article.count}} </h3>
+                        <p class="mb-0">totale articles</p>
+                        </a>
+                        <div class=" widget-action-link">
+                              
+                                <!-- if list_quip.count == 0  -->
+                              
+
+
+                            
+                                 <!-- else  -->
+                                
+                                <small class="text-success weight700" title="pourcentage installation">
+                                   <!-- list_installation.count|div:list_quip.count|mul:100|floatformat:2 -->
+                                  
+<!--                               <i class="fa fa-long-arrow-up"></i>-->
+                           </small>
+
+                          
+                                 <!-- endif -->
+                               
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="creative-state-icon bg-purple text-center pull-left">
+                          <div class="preview"> <i class="icon-social-dropbox"></i>  </div>
+                    </div>
+                    
+                    <div class="creative-state-info text-center pull-left">
+
+                         <a href="{%url 'stock:table_stock'%}">
+                             <!-- {%
+                                  url 'equip:category_table'
+                                  %} {% if request.user.is_staff %} {% else %} {% endif %} -->
+                                  
+                        <h3 class="mt-4"> {{stock.count}} </h3>
+                        <p class="mb-0">totale Stocks</p>
+                        </a> 
+                        
+                        <div class=" widget-action-link">
+<!--                            <small class="text-success weight700">5% <i class="fa fa-long-arrow-up"></i></small>-->
+                        </div>
+
+                    </div>
+                </div>
+
+
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="creative-state-icon bg-purple text-center pull-left">
+                          <div class="preview">  <i class="vl_user-male"></i> </div>
+                    </div>
+                    <div class="creative-state-info text-center pull-left">
+                        <a href="{%url 'stock:table_users'%}">
+                            
+                        <h3 class="mt-4"> {{user.count}} </h3>
+                        <p class="mb-0">totale utilisateur</p>
+                        </a>
+                        <div class=" widget-action-link">
+<!--                            <small class="text-success weight700">5% <i class="fa fa-long-arrow-up"></i></small>-->
+                        </div>
+
+                    </div>
+                </div>
+
+
+                
+                
+
+            </div>
+
+        </div>
+    </div>
+
+                
+    {% else %}
+
+        <div class="container-fluid mt-xl-4 pt-5">
+        
+            <!-- <div class="container-fluid"> -->
+        <!--creative states-->
+<!--          creative-state-area-->
+
+        <div class="creative-state-area ">
+            <div class="row">
+                <div class="col-lg-7 col-12">
+                    
+                        <!-- if list_quip.count|sub:list_installation.count < 5  -->
+                       
+                  
+                    <h3 class="text-info">
+                        Tableau de bord
+                        <!-- list_quip.count|sub:list_installation.count  -->
+                    </h3>
+                    
+                         <!-- endif -->
+                    
+                        <!-- messages -->
+                       
+                            <!-- for message in messages -->
+                        <div class="alert alert-{{message.tags}}">
+                           
+                          
+                        </div>
+                        
+
+                </div>
+                <div class="col-lg-5  col-12 text-lg-right">
+                    <div class="row short-states mb-lg-0 mb-4">
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="creative-state-icon bg-danger text-center pull-left">
+                          <div class="preview">  <i class="fa fa-home"></i> </div>
+                    </div>
+                    <div class="creative-state-info text-center pull-left">
+                        <a class="nav-link " href="{%url 'stock:home' %}">
+                            <h3 class="mt-4"> accueil  </h3>
+                    </a>
+                        <div class=" widget-action-link">
+<!--                            <small class="text-success weight700">5% <i class="fa fa-long-arrow-up"></i></small>-->
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="creative-state-icon bg-danger text-center pull-left">
+                          <div class="preview">  <i class="ti-shopping-cart"></i> </div>
+                    </div>
+                    <div class="creative-state-info text-center pull-left">
+                        <a href="{% url 'stock:sortir_article'%}">
+                            
+                        <h3 class="mt-4"> Sortir Des Articles-إخراج  </h3>
+                       
+                        </a>
+                        <div class=" widget-action-link">
+<!--                            <small class="text-success weight700">5% <i class="fa fa-long-arrow-up"></i></small>-->
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="creative-state-icon bg-danger text-center pull-left">
+                        <i class="vl_clip-board"></i>
+                    </div>
+                    <div class="creative-state-info text-center pull-left">
+                        <a href="{%url 'stock:table_categorie'%}">  
+                             url 'equip:table_equipement' 
+                            
+                        <h3 class="mt-4">{{categorie.count}}</h3>
+                        <p class="mb-0">TOTALE CATEGORIE</p>
+                         </a>
+
+
+                    </div>
+                </div> -->
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="creative-state-icon bg-warning text-center pull-left">
+                          <div class="preview col-sm-6 col-md-4 col-lg-3"><i class="ti-view-list"></i></div>
+                    </div>
+                    <div class="creative-state-info text-center pull-left">
+                        <a href="{%url 'stock:table_article'%}">  
+                            <!-- url 'install:table_installation'  -->
+                           
+                        <h3 class="mt-4">{{article.count}} </h3>
+                        <p class="mb-0">totale articles</p>
+                        </a>
+                        <div class=" widget-action-link">
+                              
+                                <!-- if list_quip.count == 0  -->
+                              
+
+
+                            
+                                 <!-- else  -->
+                                
+                                <small class="text-success weight700" title="pourcentage installation">
+                                   <!-- list_installation.count|div:list_quip.count|mul:100|floatformat:2 -->
+                                  
+<!--                               <i class="fa fa-long-arrow-up"></i>-->
+                           </small>
+
+                          
+                                 <!-- endif -->
+                               
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="creative-state-icon bg-danger text-center pull-left">
+                          <div class="preview">  <i class="ti-shopping-cart"></i> </div>
+                    </div>
+                    <div class="creative-state-info text-center pull-left">
+                            
+                        <h3 class="mt-4">{{sortir.count}}</h3>
+                        <p class="mb-0">TOTALE Articles Sorties</p>
+                        <div class=" widget-action-link"> -->
+<!--                            <small class="text-success weight700">5% <i class="fa fa-long-arrow-up"></i></small>-->
+                        <!-- </div>
+
+                    </div>
+                </div> -->
+                
+
+            </div>
+
+        </div>
+    </div>
+
+
+        {% endif %}
+     {% endif %}
+     
+    </div>
+    {% include 'stock/include_footer.html' %}
+ </div>
+
+
+{% endblock content %}

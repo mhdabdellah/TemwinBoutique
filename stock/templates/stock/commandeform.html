@@ -1,0 +1,60 @@
+{% extends 'base.html'%}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+
+    <!-- Trigger the modal with a button -->
+  <!--  <button type="button" class="btn btn-info p-2 btn-md" data-toggle="modal" data-target="#myModal" title="Ajouter Equipement">+</button>-->
+  
+    <!-- Modal -->
+  <!--  <div class="modal fade" id="myModal" role="dialog">-->
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" >Faire des nouvelles Commandes pour des Articles </h4>
+  
+                     <button type="button" class="close" data-dismiss="modal">
+                         <a href=""  >&times;</a>
+                     </button>
+  
+  
+                       </div>
+                     <div class="modal-body">
+                           {% if messages %}
+                           {% for message in messages %}
+                          <div class="alert alert-{{message.tags}}">
+                          {{message}}
+                          </div>
+                             {% endfor %}
+                              {% endif %}
+                              <!--    form      -->
+    <form method="POST">
+        {% csrf_token %}
+        {{commande_Form|crispy}}
+
+        <div class="mt-6">
+            <button type="submit" class="btn btn-primary p-2 pl-4 pr-4">Add</button>
+           <button type="reset" class="btn btn-outline-secondary p-2">Cancel</button>
+           </div>
+
+      </form>
+
+      </div>
+     <div class="modal-footer">
+   <a href=""  >
+       <button type="button" class="btn btn-default p-2 " data-dismiss="modal">
+          Close
+         </button>
+        </a>
+        </div>
+
+
+        <!--   endform         -->
+       </div>
+    </div>
+          <!--  </div>-->
+        {% include 'stock/include_footer.html' %}
+          </div>
+
+            {% endblock content %}

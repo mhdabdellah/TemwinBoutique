@@ -1,0 +1,137 @@
+{% extends 'base.html'%}
+{% block content %}}
+
+{% load crispy_forms_tags %}
+
+<div class="content-wrapper">
+
+        <div class="container-fluid">
+
+            <!--page title-->
+            <div class="page-title mb-4 d-flex align-items-center">
+                <div class="mr-auto">
+                    <h4 class="weight500 d-inline-block pr-3 mr-3 border-right">LIST DES CLIENTS</h4>
+                    <nav aria-label="breadcrumb" class="d-inline-block ">
+                        <ol class="breadcrumb p-0">
+                            <li class="breadcrumb-item"><a href="{% url 'stock:home' %}">Accueil</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'client:clientform'%}">Ajouter Un Client</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">List Des Clients</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <!--/page title-->
+                   <div class="row">
+                <div class="col-xl-12">
+                      <div class="card card-shadow mb-4 ">
+                            <div class="card-header border-0">
+                                <div class="custom-title-wrap bar-warning">
+                                    <div class="custom-title">LIST DES FACTURES </div>
+                                    <div class=" widget-action-link">
+                                      {% if request.user.is_staff %}
+
+                                        <div class="dropdown">
+                                            <a href="#" class="btn btn-transparent text-secondary dropdown-hover p-0" data-toggle="dropdown">
+                                                Action <i class="fa fa-caret-down pl-2"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right vl-dropdown">
+                                                
+                                                <a class="dropdown-item" href="{% url 'stock:home' %}"> Accueil</a>
+                                                <a class="dropdown-item" href="{% url 'client:clientform'%}">Ajouter Un Client</a>
+                                                <a class="dropdown-item" href="{% url 'client:table_client' %}"> List Des Clients</a>
+                                            </div>
+                                        </div>
+                                         {%endif%}
+
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="card-body- pt-3 pb-4">
+                            <div class="table-responsive">
+                                {% if request.user.is_staff %}
+                                <table id="data_table" class="table table-bordered table-striped" cellspacing="0">
+
+                                    <thead>
+
+                                    <tr>
+                                        <th scope="col">NNI </th>
+                                        <th scope="col">Nom </th>
+                                        <th scope="col">Prenom</th>
+                                        <th scope="col">Son Conseiller</th>
+                                        <th scope="col"> QRcode </th>
+                                       <th scope="col">Genérer Une Cart Temwin</th>
+                                       <th scope="col">Supprimer LE Client</th>
+                                    </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                        {% for client in tClients %}
+                                        <tr>
+                                            <td scope="row">{{client.nni}}</td>
+                                            <td scope="row">{{client.nom}}</td>
+                                            <td scope="row">{{client.prenom}}</td>
+                                            <td scope="row">{{client.user}}</td>
+                                            <th scope="row"> <img src="{{client.qr}}" alt="Event QR code" /> </th>
+                                            <th>
+                                                <!-- Genérer_cart/{{client.id}}/ -->
+                                                <a href="#" class="btn btn-primary mb-2 btn-success" >Genérer Cart</a>
+                                         
+                                            </th>
+                                            <th>
+                                                <!-- delete_client/{{client.id}} -->
+                                                <a href="#" class="btn btn-primary mb-2 btn-success" >SUPPRIMER</a>
+                                        
+                                            </th>
+                                             
+                                            <!-- javascript:window.print() -->
+                                        </tr>
+
+                                        {%endfor%}
+                                    </tbody>
+
+                                </table>
+                                {% else %}
+                                <table id="data_table" class="table table-bordered table-striped" cellspacing="0">
+
+                                    <thead>
+
+                                    <tr>
+                                       <th scope="col"></th>
+                                       
+                                       <th scope="col">NNI </th>
+                                       <th scope="col">Nom </th>
+                                       <th scope="col">Prenom</th>
+                                       <th scope="col">Son Conseiller</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for client in tClients %}
+                                        <tr>
+                                            <td scope="row">{{client.nni}}</td>
+                                            <td scope="row">{{client.nom}}</td>
+                                            <td scope="row">{{client.prenom}}</td>
+                                            <td scope="row">{{client.user}}</td>
+                                        </tr>
+
+                                        {%endfor%}
+                                    </tbody>
+
+                                </table>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+<!--    footer -->
+     {% include 'stock/include_footer.html' %}
+
+
+
+    </div>
+
+{% endblock content %}

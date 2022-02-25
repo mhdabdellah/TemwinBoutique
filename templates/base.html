@@ -1,0 +1,713 @@
+{% load static %}
+<!DOCTYPE html>
+
+
+<html lang="fr">
+
+<!-- Mirrored from thevectorlab.net/dashlab-v1.3/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Feb 2019 05:37:41 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Mosaddek">
+
+    <!--favicon icon-->
+<!--    <link rel="icon" type="image/png" href="{% static 'assets/img/favicon.html' %}">-->
+      <link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}">
+
+    
+    <!-- <title> title</title> -->
+   
+    <title></title>
+   
+     <!--    icon-->
+     <!--     <link rel="shortcut icon" href="{% static 'blog/images/favicon.ico' %}">-->
+     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+    <!--web fonts-->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+
+    <!--bootstrap styles-->
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!--icon font-->
+    <link href="{% static 'assets/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/dashlab-icon/dashlab-icon.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/simple-line-icons/css/simple-line-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/themify-icons/css/themify-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/weather-icons/css/weather-icons.min.css' %}" rel="stylesheet">
+
+    <!--custom scrollbar-->
+    <link href="{% static 'assets/vendor/m-custom-scrollbar/jquery.mCustomScrollbar.css' %}" rel="stylesheet">
+
+    <!--jquery dropdown-->
+    <link href="{% static 'assets/vendor/jquery-dropdown-master/jquery.dropdown.css' %}" rel="stylesheet">
+
+    <!--jquery ui-->
+    <link href="{% static 'assets/vendor/jquery-ui/jquery-ui.min.css' %}" rel="stylesheet">
+
+    <!--iCheck-->
+    <link href="{% static 'assets/vendor/icheck/skins/all.css' %}" rel="stylesheet">
+
+    <!--vector maps -->
+    <link href="{% static 'assets/vendor/vector-map/jquery-jvectormap-1.1.1.css' %}" rel="stylesheet" >
+
+    <!--c3chart-->
+    <link href="{% static 'assets/vendor/c3chart/c3.min.css' %}" rel="stylesheet">
+
+        <!--data table-->
+    <link href="{% static 'assets/vendor/data-tables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+
+    <!--custom styles-->
+    <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]-->
+<!--    <script src="{% static 'assets/vendor/html5shiv.js' %}"></script>-->
+<!--    <script src="{% static 'assets/vendor/respond.min.js' %}"></script>-->
+    <!-- [endif]-->
+</head>
+
+
+<body class="fixed-nav leftnav-floating left-side-toggled">
+
+    {% if request.user.is_staff and request.user.is_superuser %}
+
+    <!--navigation : sidebar & header-->
+   <nav class="navbar navbar-expand-lg fixed-top navbar-dark" id="mainNav">
+
+    <!--brand name-->
+    <a class="navbar-brand navbar-hide-responsive" href="#">
+                    <img class="pr-3 float-left" src="{% static 'img/logo-icon.png' %}" srcset="{% static 'img/logo-icon.png' %}"  alt=""/>
+                    <div class="float-left">
+                        <div>stocki</div>
+
+                    </div>
+    </a>
+
+    <!-- <nav class="navbar-light bg-light">
+        <div class="container-fluid nav-link nav-link-collapse collapsed" data-toggle="collapse">
+        <form class="d-flex" method="POST" action="search">
+            {% csrf_token %}
+          <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success  p-2 pl-4 pr-4" type="submit"><i class="vl_search">Search</i></button>
+        </form>
+         </div>
+        </nav> -->
+<!-- 
+    <div class="nav-link nav-link-collapse collapsed" data-toggle="collapse">
+        <i class="vl_search"></i>
+            <span class="nav-link-text">
+                <input type="text" class="search-form" placeholder="Search Report"/>
+            </span>
+            <a href="search"><button type="submit" class="btn btn-primary p-2 pl-4 pr-4"><i class="vl_search">search</i></button></a>
+    </div> -->
+    <!--/brand name-->
+
+    <!--brand mega menu-->
+    <!-- <div id="jq-dropdown-1" class="jq-dropdown">
+        <div class="b-mega-menu">
+            <div class="card card-shadow">
+                <div class="card-header p-2 pl-3">
+                    <div class="navbar-brand mt-2">
+                        <img class="pr-3 float-left" src="assets/img/logo-icon.png" srcset="assets/img/logo-icon@2x.png 2x"  alt=""/>
+                        <div class="float-left">
+                            <div>DashLab</div>
+                                <span class="page-direction f12 weight300">
+                                    <span>home</span>
+                                    <i class="fa fa-angle-right"></i>
+                                    <span>ui element</span>
+                                </span>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div> -->
+    <!--/brand mega menu-->
+
+    <!--responsive nav toggle-->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <!--/responsive nav toggle-->
+
+    <!--responsive rightside toogle-->
+    <a href="javascript:;" class="nav-link right_side_toggle responsive-right-side-toggle">
+        <i class="icon-options-vertical"> </i>
+    </a>
+    <!--/responsive rightside toogle-->
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      
+        <!--left side nav-->
+        <ul class="navbar-nav left-side-nav" id="accordion">
+
+            <li class="nav-item-search" data-toggle="tooltip" data-placement="right" title="Search">
+                <div class="nav-link nav-link-collapse collapsed" data-toggle="collapse">
+                    <i class="vl_search"></i>
+                        <span class="nav-link-text">
+                            <input type="text" class="search-form" placeholder="Search Report"/>
+                        </span>
+                </div>
+            </li>
+
+
+
+
+
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="accueil">
+                <a class="nav-link " href="{%url 'stock:home' %}">
+                        <i class="fa fa-home"></i>
+                    <span class="nav-link-text">accueil </span>
+                </a>
+            </li>
+
+
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Forms">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" data-target="#forms">
+                        <i class="vl_form"></i>
+                        <span class="nav-link-text">Forms</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse" id="forms" data-parent="#accordion">
+
+                        <li> <a href="{% url 'accounts:signup'%}"> <i class="vl_user-male"> Ajouter des utilisateurs</i></a> </li>
+                        <li> <a href="{% url 'stock:stockform' %}"  ><i class="ti-view-list"> Ajouter nouvelle Stock</i></a></li>
+                        <li> <a href="{% url 'stock:categorieform'%}"  ><i class="ti-view-list"> Ajouter nouvelle Categorie </i></a></li>
+                        <li> <a href="{% url 'stock:articleform'%}"  ><i class="ti-view-list"> Ajouter nouvelle Article</i></a> </li>
+                        <!-- <li> <a href="{% url 'stock:entrerform'%}"  ><i class="ti-view-list"> Entrer Article Dans une Stock</i></a> </li> -->
+                        <li> <a href="{% url 'stock:sortir_article'%}"><i class="ti-view-list"><i class="fas fa-sort"> Sortir Article d'une Stock</i></i></a> </li>
+                        <!-- <li> <a href="{% url 'stock:commandeform'%}"><i class="ti-view-list"> Faire une nouvelle Commande</i> </a> </li>
+                        <li> <a href="{% url 'stock:panierform'%}"><i class="ti-view-list"> Ajouter une Panier</i></a> </li> --> 
+                        <li> <a href="{% url 'stock:factureform'%}"><i class="ti-view-list"> Ajouter une Facture</i></a> </li>
+                        <li> <a href="{% url 'client:clientform'%}"><i class="ti-view-list"> Ajouter un Client</i></a> </li>
+                    </ul>
+                </li>
+
+
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Les Tables">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" data-target="#d_tables">
+                        <i class="fa fa-table" aria-hidden="true"></i>
+                        <span class="nav-link-text">Les Tables</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse" id="d_tables" data-parent="#accordion">
+                        <!-- <li> <a href="table_entrer"><i class="vl_clip-board"> list des article Entrer dans la stock</i></a> </li> -->
+                        <li> <a href="{% url 'stock:table_users'%}"> <i class="vl_user-male"> list des utilisateurs</i></a> </li>
+                        <li> <a href="{% url 'stock:table_article'%}"> <i class="vl_clip-board"> list des article</i></a> </li>
+                         <li><a href="{% url 'stock:table_categorie'%}"><i class="vl_clip-board"> list des categorie qui exist</i></a> </li>
+                         <li><a href="{% url 'stock:table_stock'%}"><i class="icon-social-dropbox"> list des stocks</i></a> </li>
+                         <li><a href="{% url 'stock:table_sortir'%}"><i class="icon-social-dropbox"> list des articles sortir</i></a> </li>
+                         <!-- <li><a href="{% url 'stock:table_commande'%}"><i class="vl_clip-board"> list des commandes</i></a> </li>
+                         <li><a href="{% url 'stock:table_panier'%}"><i class="vl_clip-board"> list des Pagnier</i></a> </li> -->
+                         <li><a href="{% url 'stock:table_facture'%}"><i class="vl_clip-board"> list des factures</i> </a> </li>
+                         <li><a href="{% url 'client:table_client'%}"><i class="vl_clip-board"> list des Clients</i> </a> </li>
+                    </ul>
+                </li>
+
+
+        </ul>
+
+        <ul class="navbar-nav sidenav-toggler">
+            <li class="nav-item">
+                <a class="nav-link text-center" id="left-nav-toggler">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </li>
+        </ul>
+        
+        {% else %}
+            {% if request.user.is_staff %} 
+
+             <!--navigation : sidebar & header-->
+   <nav class="navbar navbar-expand-lg fixed-top navbar-dark" id="mainNav">
+
+    <!--brand name-->
+    <a class="navbar-brand navbar-hide-responsive" href="#">
+                    <img class="pr-3 float-left" src="{% static 'img/logo-icon.png' %}" srcset="{% static 'img/logo-icon.png' %}"  alt=""/>
+                    <div class="float-left">
+                        <div>stocki</div>
+
+                    </div>
+    </a>
+
+    <!-- <nav class="navbar-light bg-light">
+        <div class="container-fluid nav-link nav-link-collapse collapsed" data-toggle="collapse">
+        <form class="d-flex" method="POST" action="search">
+            {% csrf_token %}
+          <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success  p-2 pl-4 pr-4" type="submit"><i class="vl_search">Search</i></button>
+        </form>
+         </div>
+        </nav> -->
+<!-- 
+    <div class="nav-link nav-link-collapse collapsed" data-toggle="collapse">
+        <i class="vl_search"></i>
+            <span class="nav-link-text">
+                <input type="text" class="search-form" placeholder="Search Report"/>
+            </span>
+            <a href="search"><button type="submit" class="btn btn-primary p-2 pl-4 pr-4"><i class="vl_search">search</i></button></a>
+    </div> -->
+    <!--/brand name-->
+
+    <!--brand mega menu-->
+    <!-- <div id="jq-dropdown-1" class="jq-dropdown">
+        <div class="b-mega-menu">
+            <div class="card card-shadow">
+                <div class="card-header p-2 pl-3">
+                    <div class="navbar-brand mt-2">
+                        <img class="pr-3 float-left" src="assets/img/logo-icon.png" srcset="assets/img/logo-icon@2x.png 2x"  alt=""/>
+                        <div class="float-left">
+                            <div>DashLab</div>
+                                <span class="page-direction f12 weight300">
+                                    <span>home</span>
+                                    <i class="fa fa-angle-right"></i>
+                                    <span>ui element</span>
+                                </span>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div> -->
+    <!--/brand mega menu-->
+
+    <!--responsive nav toggle-->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <!--/responsive nav toggle-->
+
+    <!--responsive rightside toogle-->
+    <a href="javascript:;" class="nav-link right_side_toggle responsive-right-side-toggle">
+        <i class="icon-options-vertical"> </i>
+    </a>
+    <!--/responsive rightside toogle-->
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      
+        <!--left side nav-->
+        <ul class="navbar-nav left-side-nav" id="accordion">
+
+            <li class="nav-item-search" data-toggle="tooltip" data-placement="right" title="Search">
+                <div class="nav-link nav-link-collapse collapsed" data-toggle="collapse">
+                    <i class="vl_search"></i>
+                        <span class="nav-link-text">
+                            <input type="text" class="search-form" placeholder="Search Report"/>
+                        </span>
+                </div>
+            </li>
+
+
+
+
+
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="accueil">
+                <a class="nav-link " href="{%url 'stock:home' %}">
+                        <i class="fa fa-home"></i>
+                    <span class="nav-link-text">accueil </span>
+                </a>
+            </li>
+
+
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Forms">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" data-target="#forms">
+                        <i class="vl_form"></i>
+                        <span class="nav-link-text">Forms</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse" id="forms" data-parent="#accordion">
+
+                        <li> <a href="{% url 'stock:categorieform'%}"  ><i class="ti-view-list"> Ajouter nouvelle Categorie </i></a></li>
+                        <li> <a href="{% url 'stock:articleform'%}"  ><i class="ti-view-list"> Ajouter nouvelle Article</i></a> </li>
+                        <li> <a href="{% url 'stock:sortir_article'%}"><i class="ti-view-list"> Sortir Article d'une Stock</i></a> </li>
+                        <li> <a href="{% url 'stock:factureform'%}"><i class="ti-view-list"> Ajouter une Facture</i></a> </li>
+                    </ul>
+                </li>
+
+
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Les Tables">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" data-target="#d_tables">
+                        <i class="fa fa-table" aria-hidden="true"></i>
+                        <span class="nav-link-text">Les Tables</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse" id="d_tables" data-parent="#accordion">
+                        <li> <a href="{% url 'stock:table_article'%}"> <i class="vl_clip-board"> list des article</i></a> </li>
+                         <li><a href="{% url 'stock:table_categorie'%}"><i class="vl_clip-board"> list des categorie qui exist</i></a> </li>
+                         <li><a href="{% url 'stock:table_facture'%}"><i class="vl_clip-board"> list des factures</i> </a> </li>
+                    </ul>
+                </li>
+
+
+        </ul>
+
+        <ul class="navbar-nav sidenav-toggler">
+            <li class="nav-item">
+                <a class="nav-link text-center" id="left-nav-toggler">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </li>
+        </ul>
+        
+        
+            {% else %}
+
+            <!--navigation : sidebar & header-->
+   <nav class="navbar navbar-expand-lg fixed-top navbar-dark" id="mainNav">
+
+    <!--brand name-->
+    <a class="navbar-brand navbar-hide-responsive" href="#">
+                    <img class="pr-3 float-left" src="{% static 'img/logo-icon.png' %}" srcset="{% static 'img/logo-icon.png' %}"  alt=""/>
+                    <div class="float-left">
+                        <div>stocki</div>
+
+                    </div>
+    </a>
+ 
+    
+    <!--responsive nav toggle-->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <!--/responsive nav toggle-->
+
+            {% endif %}
+        {% endif %}
+        <!--/left side nav-->
+
+        <!--nav push link-->
+        <!-- <ul class="navbar-nav sidenav-toggler">
+            <li class="nav-item">
+                <a class="nav-link text-center" id="left-nav-toggler">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </li>
+        </ul> -->
+        <!-- /nav push link -->
+
+        <!--header leftside links-->
+
+        <!--/header leftside links-->
+
+        <!--header rightside links-->
+        <ul class="navbar-nav header-links ml-auto hide-arrow">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle mr-lg-3" id="messagesDropdown" href="#" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <i class="vl_chat-bubble"></i>
+                        <span class="d-lg-none">Messages
+                            <span class="badge badge-pill badge-primary">9 New</span>
+                        </span>
+                    <div class="notification-alarm">
+                        {% if message %}<span class="wave wave-danger"></span>
+                        <span class="dot"></span>
+                        {% else %}
+                        <span class="dot bg-success"></span>
+                        {%endif%}
+                    </div>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right header-right-dropdown-width pb-0" aria-labelledby="messagesDropdown">
+                    <h6 class="dropdown-header weight500 ">Messages</h6>
+                    <div class="dropdown-divider mb-0"></div>
+                    {% for msg in message %}
+                    <a class="dropdown-item border-bottom msg-unread" href="{% url 'chat:room_message' msg.sender.id %}">
+                        <div class="float-left notificaton-thumb">
+                            <img class="rounded-circle" src="{{ msg.sender.profile.image.url }}" alt=""/>
+                        </div>
+                        <span class="weight500">{{msg.sender}}</span>
+                        <span class="small float-right text-muted">{{msg.date_created.hour}}h:{{msg.date_created.minute}}AM</span>
+
+                        <div class="dropdown-message">
+                            {{msg.message}}
+                        </div>
+                    </a>
+                    {% endfor %}
+
+                    <!-- <a class="dropdown-item border-bottom msg-unread" href="#">
+                        <div class="float-left notificaton-thumb">
+                            <img class="rounded-circle" src="{% static 'assets/img/avatar/avatar2.jpg'%}" alt=""/>
+                        </div>
+                        <span class="weight500">John Doe</span>
+                        <span class="small float-right text-muted">10:28 AM</span>
+
+                        <div class="dropdown-message">
+                            Hello this is an example message. Just want to show how it looks
+                        </div>
+                    </a> -->
+
+                    <!-- <a class="dropdown-item border-bottom" href="#">
+                        <div class="float-left notificaton-thumb">
+                            <img class="rounded-circle" src="{% static 'assets/img/avatar/avatar3.jpg'%}" alt=""/>
+                        </div>
+                        <span class="weight500">Dash Don</span>
+                        <span class="small float-right text-muted">07:12 PM</span>
+
+                        <div class="dropdown-message">
+                            Hi, This is Dash Don form usa. I'm looking for someone who really good at design and frontend like mosaddek
+                        </div>
+                    </a> -->
+
+                    <!-- <a class="dropdown-item border-bottom" href="#">
+                        <div class="float-left notificaton-thumb">
+                            <img class="rounded-circle" src="{% static 'assets/img/avatar/avatar1.jpg' %}" alt=""/>
+                        </div>
+                        <span class="weight500">dkmosa</span>
+                        <span class="small float-right text-muted">12:10 PM</span>
+
+                        <div class="dropdown-message">
+                            We build a beautiful dashboard admin panel for professional
+                        </div>
+                    </a> -->
+                    <a class="dropdown-item small" href="{% url 'chat:room'%}">View all messages</a>
+                </div>
+            </li>
+804
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle mr-lg-3" id="alertsDropdown" href="#" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="true">
+                    <i class="vl_bell"></i>
+                        <span class="d-lg-none">Notification
+                            <span class="badge badge-pill badge-warning">5 New</span>
+                        </span>
+                    <div class="notification-alarm">
+                        <span class="wave wave-warning"></span>
+                        <span class="dot bg-warning"></span>
+                    </div>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right header-right-dropdown-width pb-0" aria-labelledby="alertsDropdown">
+                    <h6 class="dropdown-header weight500">Notification</h6>
+
+                    <div class="dropdown-divider mb-0"></div>
+                    <a class="dropdown-item border-bottom" href="#">
+                            <span class="text-primary">
+                            <span class="weight500">
+                                <i class="vl_bell weight600 pr-2"></i>Weekly Update</span>
+                            </span>
+                        <span class="small float-right text-muted">03:14 AM</span>
+
+                        <!-- > -->
+                    </a>
+
+                    <a class="dropdown-item border-bottom" href="#">
+                            <span class="text-danger">
+                            <span class="weight500">
+                                <i class="vl_Download-circle weight600 pr-2"></i>Server Error</span>
+                            </span>
+                        <span class="small float-right text-muted">10:34 AM</span>
+
+                        <div class="dropdown-message f12">
+                            Unexpectedly server response stop. Responsible members are requested to fix it soon
+                        </div>
+                    </a>
+
+                    <a class="dropdown-item border-bottom" href="#">
+                            <span class="text-success">
+                            <span class="weight500">
+                                <i class="vl_screen weight600 pr-2"></i>Monthly Meeting</span>
+                            </span>
+                        <span class="small float-right text-muted">12:30 AM</span>
+
+                        <div class="dropdown-message f12">
+                            Our monthly meeting will be held on tomorrow sharp 12:30. All members are requested to attend this meeting.
+                        </div>
+                    </a>
+
+                    <a class="dropdown-item small" href="#">View all notification</a>
+                </div>
+            </li> 
+             <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle mr-lg-3" id="userNav" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="user-thumb">
+                            <!-- image nav -->
+
+                            <img class="rounded-circle" src= "{{request.user.profile.image.url}}" alt="{{user.username}}"/>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userNav">
+                        <a class="dropdown-item" href="{% url 'accounts:profile' %}">Mon Profile</a>
+
+                        <a class="dropdown-item" href="{% url 'accounts:profile_edit'%}">Modifier Mon Profile</a>
+                        <a class="dropdown-item" href="{% url 'password_change' %}">Modifier le mot de passe</a>
+
+                          <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'logout'%}">Déconnexion</a>
+
+
+
+                    </div>
+
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link right_side_toggle">
+                    <i class="icon-options-vertical"> </i>
+                </a>
+            </li>
+        </ul>
+        <!--/header rightside links-->
+
+    </div>
+</nav>
+    <!--/navigation : sidebar & header-->
+
+    <!--main content wrapper-->
+    <!--         strarblock       -->
+
+     {% block content%}
+     {% endblock content%}
+
+    <!--          endblock  -->
+    <!--/main content wrapper-->
+
+    <!--right sidebar-->
+    <div class="right-sidebar" id="right_side_bar">
+        <div class="card border-0">
+            <div class="card-body pb-0">
+                <!--close toggle-->
+                <a href="javascript:;" class="right_side_toggle float-right close-sidebar-icon">
+                    <i class=" ti-shift-right"> </i>
+                </a>
+                <!--/close toggle-->
+            </div>
+            <div class="card-body pt-2">
+
+                <div class="right-widget">
+                    <div class="custom-title-wrap bar-primary mb-4">
+                        <div class="custom-title">Statistique</div>
+                    </div>
+
+                    <ul class="list-unstyled base-timeline">
+                        <li class="time-dot-primary">
+                            <div class="base-timeline-info">
+                                <a href="#">list_quip.count</a> Total equipement ajoute
+
+                            </div>
+                        </li>
+                        <li class="time-dot-danger">
+                            <div class="base-timeline-info">
+                            <!-- list_installation.count /list_quip.count  deja installer -->
+                            </div>
+
+                        </li>
+                        <li class="time-dot-purple">
+                            <div class="base-timeline-info">
+                                 <a href="#" class="text-purple"> list_direction.count </a> Total direction deja ajoute
+                            </div>
+                        </li>
+                        <!-- <li class="time-dot-purple">
+                            <div class="base-timeline-info">
+                                 <a href="#" class="text-purple">{{ list_direction.count }}</a> Total direction deja ajoute
+                            </div>
+                        </li> -->
+                    </ul>
+                </div>
+
+                <div class="right-widget">
+                    <div class="custom-title-wrap bar-danger mb-4">
+                        <div class="custom-title">Utilisateur Connecter</div>
+                    </div>
+
+                    <ul class="list-unstyled mb-0 list-widget">
+                        <li class="cursor">
+                            <div class="media mb-4">
+                                    <div class="st-alphabet mr-3">
+                                       <img class="rounded-circle" src= "{{request.user.profile.image.url}}" alt="{{user.username}}"/>
+                                    <span class="status bg-success"></span>
+                                </div>
+
+                                <div class="media-body ">
+                                    <div class="float-left">
+                                        <h6 class="text-uppercase mb-0"> {{user.username}}</h6>
+                                        <span class="text-muted">En Ligne</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+   <!--/right sidebar-->
+
+    <!--basic scripts-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/jquery-ui/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/popper.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <script src="{% static 'assets/vendor/jquery-dropdown-master/jquery.dropdown.js' %}"></script>
+
+
+    <script src="{% static 'assets/vendor/m-custom-scrollbar/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/icheck/skins/icheck.min.js' %}"></script>
+
+     <!--datatables-->
+    <script src="{% static 'assets/vendor/data-tables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/data-tables/dataTables.bootstrap4.min.js' %}"></script>
+
+    <!--sparkline-->
+    <script src="{% static 'assets/vendor/sparkline/jquery.sparkline.js' %}"></script>
+    <!--sparkline initialization-->
+    <script src="{% static 'assets/vendor/js-init/sparkline/init-sparkline.js' %}"></script>
+    <script src="{% static 'assets/vendor/js-init/init-datatable.js' %}"></script>
+
+
+    <!--c3chart-->
+    <script src="{% static 'assets/vendor/c3chart/d3.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/c3chart/c3.min.js' %}"></script>
+    <!--c3chart initialization-->
+    <script src="{% static 'assets/vendor/js-init/c3chart/init-c3chart.js' %}"></script>
+
+    <!--chartjs-->
+    <script src="{% static 'assets/vendor/chartjs/Chart.bundle.min.js' %}"></script>
+    <!--chartjs initialization-->
+    <script src="{% static 'assets/vendor/js-init/chartjs/init-creative-state-chart.js' %}"></script>
+    <script src="{% static 'assets/vendor/js-init/chartjs/init-area-chart.js' %}"></script>
+    <script src="{% static 'assets/vendor/js-init/chartjs/init-line-chart.js' %}"></script>
+    <script src="{% static 'assets/vendor/js-init/chartjs/init-doughnut-chart.js' %}"></script>
+    <script src="{% static 'assets/vendor/js-init/chartjs/init-doughnut-chart2.js' %}"></script>
+    <script src="{% static 'assets/vendor/js-init/chartjs/init-sales-report-chart.js' %}"></script>
+    <script src="{% static 'assets/vendor/js-init/chartjs/init-bubble-chart.js' %}"></script>
+
+    <!--flot chart-->
+    <script src="{% static 'assets/vendor/flot/jquery.flot.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/flot/jquery.flot.pie.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/flot/jquery.flot.tooltip.min.js' %}"></script>
+    <!--flot chart initialization-->
+    <script src="{% static 'assets/vendor/js-init/flot/init-flot-widget.js' %}"></script>
+
+      <!--init ajax datatable-->
+    <script src="{% static 'assets/vendor/js-init/init-ajax-datatable.js' %}"></script>
+
+    <!--vectormap-->
+    <script src="{% static 'assets/vendor/vector-map/jquery-jvectormap-1.2.2.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/vector-map/jquery-jvectormap-world-mill-en.js' %}"></script>
+    <!--vectormap initialization-->
+    <script src="{% static 'assets/vendor/js-init/vmap/init-vmap-world.js' %}"></script>
+
+    <!--[if lt IE 9]>
+    <script src="{% static 'assets/vendor/modernizr.js' %}"></script>
+    <![endif]-->
+
+    <!--basic scripts initialization-->
+    <script src="{% static 'assets/js/scripts.js' %}"></script>
+</body>
+
+<!-- Mirrored from thevectorlab.net/dashlab-v1.3/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Feb 2019 05:38:32 GMT -->
+</html>
+
