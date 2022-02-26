@@ -24,9 +24,7 @@ class Client(models.Model):
     qrCode = models.ImageField(upload_to='client/qrcodes/',blank=True, null=True)
     # qrcode = models.ImageField(upload_to='qrcode', blank=True, null=True)
 
-    def validate_digit_length(nni):
-        if not (nni.isdigit() and len(nni)==10):
-            raise ValueError('%(nni) must be a digits',params={'nni':nni},)
+    
 
     def __str__(self):
         return f"le beneficiaires  {self.nom}/{self.prenom}"
