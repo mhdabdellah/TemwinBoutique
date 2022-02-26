@@ -1,6 +1,6 @@
 from PIL import Image
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser, Permission,User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -8,11 +8,31 @@ from django.dispatch import receiver
 
 # Create your models here.
 
-# Status=(('0','admin'),('1','manager'),('2','vendeure'))
+# Role=(('0','admin'),('1','manager'),('2','vendeure'))
     # statut=models.CharField(max_length=2,null=True,default='2',choices=Status)
+# class User(AbstractUser):
+    
+#     role = models.CharField(max_length=2,choices=Role,verbose_name='role')
+    
+
+#     def save(self, *args, **kwargs):
+#         super(User, self).save(*args, **kwargs)
+#         permission=Permission.objects.get(codename="Ajout_client")
+#         self.user_permissions.add(permission)
+#         permission=Permission.objects.get(codename="change_client")
+#         self.user_permissions.add(permission)
+#         permission=Permission.objects.get(codename="Ajout_stock")
+#         self.user_permissions.add(permission)
+#         permission=Permission.objects.get(codename="change_stock")
+#         self.user_permissions.add(permission)
+#         permission=Permission.objects.get(codename="Ajout_Boutique")
+#         self.user_permissions.add(permission)
+#         permission=Permission.objects.get(codename="change_Boutique")
+#         self.user_permissions.add(permission)
+#         return super(User,self).save(*args, **kwargs)
 
 class Profile(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='users')
     phone_number = models.CharField(max_length=12)
     image = models.ImageField(default='default.jpg',null=True)
     manager = models.CharField(max_length=50,null=True)

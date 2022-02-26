@@ -40,9 +40,9 @@ class NewCategorie(forms.ModelForm):
         model = Categorie
         fields =['categorie']
 
-class NewArticle(forms.ModelForm):
+class ProductForm(forms.ModelForm):
     class Meta:
-        model = Article
+        model = Produit
         fields ='__all__' 
         exclude=['user','numero','barcode']
         widgets={
@@ -70,6 +70,7 @@ class NewSortir(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(NewSortir, self).__init__(*args, **kwargs)
         self.fields['qte']=forms.IntegerField(min_value=1)
+
  
 
 class NewFacture(forms.ModelForm):

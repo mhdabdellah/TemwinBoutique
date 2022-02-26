@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.urls import reverse
 from .models import *
 from .forms import *
-from .filters import ArticleFilter
+# from .filters import ArticleFilter
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum,Q
 from accounts.models import *
@@ -149,7 +149,7 @@ def home(request):
     else :
         user=User.objects.all()
         categorie=Categorie.objects.all()
-        article=Article.objects.all()
+        article=Produit.objects.all()
         stock=Stock.objects.all()
         sortir=Sortir.objects.all()
         context={'user':user,'categorie':categorie,'article':article,'stock':stock, 'sortir':sortir,'message': message}
@@ -168,7 +168,7 @@ def stockform(request):
             for expr in mes_article:
                 print(expr)
                 
-                exp = Article.objects.get(id=expr)
+                exp = Produit.objects.get(id=expr)
                 quantity=exp.quantity + quantity
             print(quantity)
             stock_Form.qtStock=quantity
