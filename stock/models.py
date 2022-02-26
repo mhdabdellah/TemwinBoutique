@@ -116,8 +116,8 @@ class Facture(models.Model):
         return self.sorties.all()
 
 class Vente(models.Model):
-    date=models.DateTimeField(null=True)
-    quantite_vendu=models.PositiveIntegerField(verbose_name="quantite_vendu",null=True)
+    date=models.DateTimeField(auto_now_add=True)
+    quantite_vendu=models.PositiveIntegerField(verbose_name="quantite_vendu")
     client = models.ForeignKey(Client,on_delete=models.CASCADE,null=True)
 
 
