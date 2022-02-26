@@ -145,7 +145,7 @@ def home(request):
     else :
         user=User.objects.all()
         categorie=Categorie.objects.all()
-        article=Produit.objects.all()
+        article=Article.objects.all()
         stock=Stock.objects.all()
         sortir=Sortir.objects.all()
         context={'user':user,'categorie':categorie,'article':article,'stock':stock, 'sortir':sortir,'message': message}

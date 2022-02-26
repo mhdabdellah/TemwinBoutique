@@ -6,7 +6,7 @@ from .models import *
 admin.site.register(Stock)
 admin.site.register(Magazine)
 admin.site.register(Categorie)
-admin.site.register(Produit)
+admin.site.register(Article)
 admin.site.register(Sortir)
 admin.site.register(Boutique)
 admin.site.register(Facture)

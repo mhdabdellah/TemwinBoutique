@@ -21,7 +21,7 @@ class Categorie(models.Model):
 
 
 Status=(('0','Non'),('1','Oui'))
-class Produit(models.Model):
+class Article(models.Model):
 
     user= models.ForeignKey(User,blank=True,null=True,on_delete=models.CASCADE)
     numero=models.IntegerField(blank=True)
@@ -53,9 +53,9 @@ class Produit(models.Model):
         
 class Stock(models.Model):
     qtStock=models.IntegerField()
-    # user= models.ForeignKey(User,blank=True,null=True,on_delete=models.CASCADE)
+    # user= models.ForeignKey(User,bla3nk=True,null=True,on_delete=models.CASCADE)
     categorie=models.ForeignKey(Categorie, blank=True,on_delete=models.CASCADE,null=True)
-    produit=models.ManyToManyField(Produit,blank=True,related_name="article") 
+    Article=models.ManyToManyField(Article,blank=True,related_name="article") 
     
     def __str__(self):
         return f"la quantite de Stock: {self.qtStock}"
@@ -81,7 +81,7 @@ class Magazine(models.Model):
 class Entrer(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     stock=models.ForeignKey(Stock,on_delete=models.CASCADE)
-    article=models.ForeignKey(Produit,on_delete=models.CASCADE)
+    article=models.ForeignKey(Article,on_delete=models.CASCADE)
     qte=models.IntegerField()
     prix_entree=models.IntegerField()
     date_entree=models.DateField()
@@ -93,7 +93,7 @@ class Sortir(models.Model):
     categorie = models.ForeignKey(Categorie,on_delete=models.CASCADE,null=True)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     stock=models.ForeignKey(Stock,null=True,on_delete=models.CASCADE)
-    article=models.ForeignKey(Produit,on_delete=models.CASCADE)
+    article=models.ForeignKey(Article,on_delete=models.CASCADE)
     qte=models.PositiveIntegerField(null=True)
     prix_sortie=models.FloatField(null=True)
     date_sortie=models.DateField(blank=True,null=True)
@@ -116,13 +116,13 @@ class Facture(models.Model):
         return self.sorties.all()
 
 class Vente(models.Model):
-    date=models.DateTimeField(auto_now_add=True)
-    quantite_vendu=models.PositiveIntegerField(verbose_name="quantite_vendu")
+    date=models.DateTimeField(auto_now_add=True,null=True)
+    quantite_vendu=models.PositiveIntegerField(verbose_name="quantite_vendu",null=True)
     client = models.ForeignKey(Client,on_delete=models.CASCADE,null=True)
 
 
 
-    def sortir_produit(p):
+    def sortir_Article(p):
         pass
     def ticket_de_vente(p):
         pass

@@ -30,7 +30,7 @@ class Client(models.Model):
 
     def save(self, *args, **kwargs):
         qrCode = self.qr_generate(self.nni)
-        self.qrCode.save(self.nni+'.png', BytesIO(qrCode), save=False)
+        self.qrCode.save(str(self.nni)+'.png', BytesIO(qrCode), save=False)
         super(Client, self).save(*args, **kwargs)
 
 

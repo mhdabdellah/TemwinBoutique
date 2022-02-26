@@ -42,9 +42,9 @@ class NewCategorie(forms.ModelForm):
 
 class ProductForm(forms.ModelForm):
     class Meta:
-        model = Produit
+        model = Article
         fields ='__all__' 
-        exclude=['user','numero','barcode']
+        exclude=['user']
         widgets={
             "date_entree":DateInput()
         }
@@ -82,8 +82,3 @@ class NewFacture(forms.ModelForm):
             'dateFacture': DateInput()
         } 
 
-class NewClient(forms.ModelForm):
-    class Meta:
-        model = Client
-        fields ='__all__'  
-        exclude =['user']
