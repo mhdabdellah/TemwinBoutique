@@ -7,7 +7,7 @@ urlpatterns=[
     path('categorieform',views.categorieform ,name='categorieform'),
     path('articleform',views.articleform ,name='articleform'),
     #vvvvvvv
-    # path('sortirform',views.sortirform ,name='sortirform'),
+    path('sortirform',views.sortirform ,name='sortirform'),
     path('factureform',views.factureform ,name='factureform'),
     path('ajax/load-articles/',views.load_articles,name='load_articles'),
     path('ajax/load-articles_out/',views.load_articles_out,name='load_articles_out'),

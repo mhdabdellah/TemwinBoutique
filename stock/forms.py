@@ -66,7 +66,8 @@ class NewSortir(forms.ModelForm):
         article = self.cleaned_data['article']
         qte = self.cleaned_data['qte']
         if (qte > article.quantity):
-            raise ValueError("la quantité n'est pas disponible dans le stock")
+            raise forms.ValidationError("la quantité n'est pas disponible dans le stock")
+        # ValueError("la quantité n'est pas disponible dans le stock")
     def __init__(self, *args, **kwargs):
         super(NewSortir, self).__init__(*args, **kwargs)
         self.fields['qte']=forms.IntegerField(min_value=1)
