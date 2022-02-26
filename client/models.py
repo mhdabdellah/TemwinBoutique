@@ -4,7 +4,7 @@ import qrcode
 from io import StringIO
 from io import BytesIO
 
-
+from django.core.validators import MinLengthValidator, int_list_validator
 # from django.core.urlresolvers import reverse
 from django.urls import reverse
 from django.core.files.uploadedfile import InMemoryUploadedFile
@@ -13,7 +13,8 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 #models.IntegerField(blank=True)
 
 class Client(models.Model):
-    nni=models.PositiveIntegerField(unique=True)
+     
+    nni=models.CharField(unique=True,max_length=10,validators=[int_list_validator(sep=''),MinLengthValidator(10)])
     nom = models.CharField(max_length=20)
     prenom = models.CharField(max_length=20)
     email = models.CharField(max_length=255,null=True)
@@ -23,6 +24,9 @@ class Client(models.Model):
     qrCode = models.ImageField(upload_to='client/qrcodes/',blank=True, null=True)
     # qrcode = models.ImageField(upload_to='qrcode', blank=True, null=True)
 
+    def validate_digit_length(nni):
+        if not (nni.isdigit() and len(nni)==10):
+            raise ValueError('%(nni) must be a digits',params={'nni':nni},)
 
     def __str__(self):
         return f"le beneficiaires  {self.nom}/{self.prenom}"
