@@ -57,8 +57,6 @@
 
 <body class="fixed-nav leftnav-floating left-side-toggled">
 
-    {% if request.user.is_staff and request.user.is_superuser %}
-
     <!--navigation : sidebar & header-->
    <nav class="navbar navbar-expand-lg fixed-top navbar-dark" id="mainNav">
 
@@ -66,7 +64,7 @@
     <a class="navbar-brand navbar-hide-responsive" href="#">
                     <img class="pr-3 float-left" src="{% static 'img/logo-icon.png' %}" srcset="{% static 'img/logo-icon.png' %}"  alt=""/>
                     <div class="float-left">
-                        <div>stocki</div>
+                        <div>Temwin</div>
 
                     </div>
     </a>
@@ -77,11 +75,11 @@
     </button>
     <!--/responsive nav toggle-->
 
-    <!--responsive rightside toogle-->
+    <!-- responsive rightside toogle -->
     <a href="javascript:;" class="nav-link right_side_toggle responsive-right-side-toggle">
         <i class="icon-options-vertical"> </i>
     </a>
-    <!--/responsive rightside toogle-->
+    <!-- /responsive rightside toogle -->
 
     <div class="collapse navbar-collapse" id="navbarResponsive">
       
@@ -115,14 +113,17 @@
                         <span class="nav-link-text">Forms</span>
                     </a>
                     <ul class="sidenav-second-level collapse" id="forms" data-parent="#accordion">
-
+                        {%if request.user.is_superuser %}
                         <li> <a href="{% url 'accounts:signup'%}"> <i class="vl_user-male"> Ajouter des utilisateurs</i></a> </li>
+                        <li> <a href="{% url 'client:clientform'%}"><i class="ti-view-list"> Ajouter un Client</i></a> </li>
+
+                      
+                        {%else%}
+                        
                         <li> <a href="{% url 'stock:stockform' %}"  ><i class="ti-view-list"> Ajouter nouvelle Stock</i></a></li>
                         <li> <a href="{% url 'stock:categorieform'%}"  ><i class="ti-view-list"> Ajouter nouvelle Categorie </i></a></li>
                         <li> <a href="{% url 'stock:articleform'%}"  ><i class="ti-view-list"> Ajouter nouvelle Article</i></a> </li>
-                        <li> <a href="{% url 'stock:sortir_article'%}"><i class="ti-view-list"><i class="fas fa-sort"> Sortir Article d'une Stock</i></i></a> </li>
-                        <li> <a href="{% url 'stock:factureform'%}"><i class="ti-view-list"> Ajouter une Facture</i></a> </li>
-                        <li> <a href="{% url 'client:clientform'%}"><i class="ti-view-list"> Ajouter un Client</i></a> </li>
+                        {%endif%}
                     </ul>
                 </li>
 
@@ -133,13 +134,21 @@
                         <span class="nav-link-text">Les Tables</span>
                     </a>
                     <ul class="sidenav-second-level collapse" id="d_tables" data-parent="#accordion">
+                        {%if request.user.is_superuser %}
                         <li> <a href="{% url 'stock:table_users'%}"> <i class="vl_user-male"> list des utilisateurs</i></a> </li>
+                        <li> <a href=""> <i class="vl_user-male"> liste des Magazins</i></a> </li>
+                        <li> <a href=""> <i class="vl_user-male"> liste des clients</i></a> </li>
+
+                        {%else %}
+                        {%if request.user.is_super_user %}
+                        <li> <a href="{% url 'stock:table_article'%}"> <i class="vl_clip-board"> list des article</i></a> </li>
+                        {%endif %}
                         <li> <a href="{% url 'stock:table_article'%}"> <i class="vl_clip-board"> list des article</i></a> </li>
                         <li><a href="{% url 'stock:table_categorie'%}"><i class="vl_clip-board"> list des categorie qui exist</i></a> </li>
                         <li><a href="{% url 'stock:table_stock'%}"><i class="icon-social-dropbox"> list des stocks</i></a> </li>
                         <li><a href="{% url 'stock:table_sortir'%}"><i class="icon-social-dropbox"> list des articles sortir</i></a> </li>
                         <li><a href="{% url 'stock:table_facture'%}"><i class="vl_clip-board"> list des factures</i> </a> </li>
-                        <li><a href="{% url 'client:table_client'%}"><i class="vl_clip-board"> list des Clients</i> </a> </li>
+                        {%endif %}
                     </ul>
                 </li>
 
@@ -153,122 +162,9 @@
                 </a>
             </li>
         </ul>
-        
-        {% else %}
-            {% if request.user.is_staff %} 
-
-             <!--navigation : sidebar & header-->
-   <nav class="navbar navbar-expand-lg fixed-top navbar-dark" id="mainNav">
-
-    <!--brand name-->
-    <a class="navbar-brand navbar-hide-responsive" href="#">
-                    <img class="pr-3 float-left" src="{% static 'img/logo-icon.png' %}" srcset="{% static 'img/logo-icon.png' %}"  alt=""/>
-                    <div class="float-left">
-                        <div>stocki</div>
-
-                    </div>
-    </a>
-
-    <!--responsive nav toggle-->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <!--/responsive nav toggle-->
-
-    <!--responsive rightside toogle-->
-    <a href="javascript:;" class="nav-link right_side_toggle responsive-right-side-toggle">
-        <i class="icon-options-vertical"> </i>
-    </a>
-    <!--/responsive rightside toogle-->
-
-    <div class="collapse navbar-collapse" id="navbarResponsive">
+   
       
-        <!--left side nav-->
-        <ul class="navbar-nav left-side-nav" id="accordion">
-
-            <li class="nav-item-search" data-toggle="tooltip" data-placement="right" title="Search">
-                <div class="nav-link nav-link-collapse collapsed" data-toggle="collapse">
-                    <i class="vl_search"></i>
-                        <span class="nav-link-text">
-                            <input type="text" class="search-form" placeholder="Search Report"/>
-                        </span>
-                </div>
-            </li>
-
-
-
-
-
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="accueil">
-                <a class="nav-link " href="{%url 'stock:home' %}">
-                        <i class="fa fa-home"></i>
-                    <span class="nav-link-text">accueil </span>
-                </a>
-            </li>
-
-
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Forms">
-                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" data-target="#forms">
-                        <i class="vl_form"></i>
-                        <span class="nav-link-text">Forms</span>
-                    </a>
-                    <ul class="sidenav-second-level collapse" id="forms" data-parent="#accordion">
-
-                        <li> <a href="{% url 'stock:categorieform'%}"  ><i class="ti-view-list"> Ajouter nouvelle Categorie </i></a></li>
-                        <li> <a href="{% url 'stock:articleform'%}"  ><i class="ti-view-list"> Ajouter nouvelle Article</i></a> </li>
-                        <li> <a href="{% url 'stock:sortir_article'%}"><i class="ti-view-list"> Sortir Article d'une Stock</i></a> </li>
-                        <li> <a href="{% url 'stock:factureform'%}"><i class="ti-view-list"> Ajouter une Facture</i></a> </li>
-                    </ul>
-                </li>
-
-
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Les Tables">
-                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" data-target="#d_tables">
-                        <i class="fa fa-table" aria-hidden="true"></i>
-                        <span class="nav-link-text">Les Tables</span>
-                    </a>
-                    <ul class="sidenav-second-level collapse" id="d_tables" data-parent="#accordion">
-                        <li> <a href="{% url 'stock:table_article'%}"> <i class="vl_clip-board"> list des article</i></a> </li>
-                         <li><a href="{% url 'stock:table_categorie'%}"><i class="vl_clip-board"> list des categorie qui exist</i></a> </li>
-                         <li><a href="{% url 'stock:table_facture'%}"><i class="vl_clip-board"> list des factures</i> </a> </li>
-                    </ul>
-                </li>
-
-
-        </ul>
-
-        <ul class="navbar-nav sidenav-toggler">
-            <li class="nav-item">
-                <a class="nav-link text-center" id="left-nav-toggler">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-            </li>
-        </ul>
-        
-        
-            {% else %}
-
-            <!--navigation : sidebar & header-->
-   <nav class="navbar navbar-expand-lg fixed-top navbar-dark" id="mainNav">
-
-    <!--brand name-->
-    <a class="navbar-brand navbar-hide-responsive" href="#">
-                    <img class="pr-3 float-left" src="{% static 'img/logo-icon.png' %}" srcset="{% static 'img/logo-icon.png' %}"  alt=""/>
-                    <div class="float-left">
-                        <div>stocki</div>
-
-                    </div>
-    </a>
- 
-    
-    <!--responsive nav toggle-->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <!--/responsive nav toggle-->
-
-            {% endif %}
-        {% endif %}
+      
         <!--/left side nav-->
 
        
@@ -400,7 +296,7 @@
     <!--/navigation : sidebar & header-->
 
     <!--main content wrapper-->
-    <!--         strarblock       -->
+    <!--  strarblock -->
 
      {% block content%}
      {% endblock content%}
