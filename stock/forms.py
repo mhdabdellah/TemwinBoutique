@@ -50,7 +50,7 @@ class ProductForm(forms.ModelForm):
         }
     def __init__(self,user, *args, **kwargs):
      
-        super(NewArticle, self).__init__(*args, **kwargs)
+        super(ProductForm, self).__init__(*args, **kwargs)
         self.fields['categorie'].queryset =Categorie.objects.filter(user=user)
         self.fields['categorie'].required=False 
 

@@ -1,5 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import redirect, render, reverse
+
+from stock.models import Boutique, Magazine
 from .forms import SignupForm, UserForm, ProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -20,18 +22,27 @@ def signup(request):
         if form.is_valid():
             us = form.save()
             if us.is_staff:
-             group = Group.objects.get(name='manager')
+             group = Group.objects.get(name='magazinier')
              us.groups.add(group)
              profile=Profile.objects.get(id=us.id)
              print(Profile)
              profile.manager=int(request.user.pk)
              profile.save()
+             user = User.objects.get(id=request.user.pk)
+             if user.is_staff:
+                 if not user.is_superuser:
+                    magasine=Magazine.objects.get(id=us.id)
+                    magasine.save()
             else:
-             group = Group.objects.get(name='shopkipper')
+             group = Group.objects.get(name='vendeur')
              us.groups.add(group)
              profile=Profile.objects.get(id=us.id)
              profile.manager=int(request.user.pk)
              profile.save()
+             user = User.objects.get(id=request.user.pk)
+             if not user.is_staff:
+                boutique=Boutique.objects.get(id=us.id)
+                boutique.save()
             messages.success(
                 request, f"Felicitation utilisateur bien ajoute f'{us.username}")
 

@@ -2,10 +2,13 @@ from django.db import models
 import barcode
 import random
 import string
+
+from django.dispatch import receiver
 from client.models import Client
 from django.contrib.auth.models import User
 from barcode.writer import ImageWriter
 from io import BytesIO
+from django.db.models.signals import post_save
 from django.core.files import File
 
 
@@ -67,16 +70,30 @@ class Boutique(models.Model):
     lieu = models.CharField(max_length=32)
     moghataa = models.CharField(max_length=40)
     vendeur=models.OneToOneField(User,on_delete=models.CASCADE)
-    stock=models.OneToOneField(Stock,on_delete=models.CASCADE)
+    # stock=models.OneToOneField(Stock,on_delete=models.CASCADE)
     def extraire_situation_boutique():
         pass
     def genererBel():
         pass
+
+@receiver(post_save, sender=User)
+def create_user_boutique(sender, instance, created, **kwargs):
+    if created:
+        if not instance.is_staff:
+            boutique = Boutique.objects.create(vendeur=instance)
+
 class Magazine(models.Model):
     lieu = models.CharField(max_length=32)
     magaziniere = models.ForeignKey(User, on_delete=models.CASCADE)
-    stock=models.OneToOneField(Stock, on_delete=models.CASCADE)
+    # stock=models.OneToOneField(Stock, on_delete=models.CASCADE)
     wilaya = models.CharField(max_length=40)
+
+@receiver(post_save, sender=User)
+def create_user_magasine(sender, instance, created, **kwargs):
+    if created:
+        if instance.is_staff:
+                 if not instance.is_superuser:
+                    magasine = Magazine.objects.create(magaziniere=instance)
 
 class Entrer(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)

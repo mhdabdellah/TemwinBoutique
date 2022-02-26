@@ -49,7 +49,7 @@ def admin_only(view_func):
         if request.user.groups.exists():
             group = request.user.groups.all()[0].name
 
-        if group == 'shopkipper' or 'manager':
+        if group == 'magazinier' or 'vendeur':
             return redirect('accounts/logout')
         elif group == 'admin':
             return view_func(request, *args, **kwargs)
@@ -64,10 +64,10 @@ def admin_and_manager_only(view_func):
 		if request.user.groups.exists():
 			group = request.user.groups.all()[0].name
 
-		if group == 'shopkipper':
+		if group == 'vendeur':
 			return redirect('accounts/logout')
 
-		if group == 'admin' or 'manager':
+		if group == 'admin' or 'magazinier':
 			return view_func(request, *args, **kwargs)
 
 	return wrapper_function
