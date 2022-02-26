@@ -11,12 +11,16 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 
 # Create your models here.
 #models.IntegerField(blank=True)
+
 class Client(models.Model):
-    nni=models.CharField(max_length=20)
+    nni=models.PositiveIntegerField(unique=True)
     nom = models.CharField(max_length=20)
     prenom = models.CharField(max_length=20)
+    email = models.CharField(max_length=255,null=True)
+    adresse=models.CharField(max_length=255,null=True)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
-    img = models.ImageField(upload_to='client/qrcodes/',blank=True, null=True)
+    tel = models.CharField(max_length=255,null=True)
+    qrCode = models.ImageField(upload_to='client/qrcodes/',blank=True, null=True)
     # qrcode = models.ImageField(upload_to='qrcode', blank=True, null=True)
 
 
@@ -25,8 +29,8 @@ class Client(models.Model):
 
 
     def save(self, *args, **kwargs):
-        img = self.qr_generate(self.nni)
-        self.img.save(self.nni+'.png', BytesIO(img), save=False)
+        qrCode = self.qr_generate(self.nni)
+        self.qrCode.save(self.nni+'.png', BytesIO(qrCode), save=False)
         super(Client, self).save(*args, **kwargs)
 
 
@@ -41,31 +45,11 @@ class Client(models.Model):
         qr.add_data("somedata" + str(nni))
         qr.make(fit=True)
 
-        img = qr.make_image(fill_color="black", back_color="white")
+        qrCode = qr.make_image(fill_color="black", back_color="white")
         qrByte = BytesIO()
-        img.save(qrByte)
+        qrCode.save(qrByte)
         return qrByte.getvalue()
-# def save(self,*args, **kwargs):
-#     if self._state.adding:
-#         # qr = qrcode.QRCode(
-#         #     version=1,
-#         #     error_correction=qrcode.constants.ERROR_CORRECT_L,
-#         #     box_size=6,
-#         #     border=0,
-#         # )
-#         # qr.add_data(self.nni)
-#         qr.make(str(self.nni))
-
-#         img = qr.make_image()
-
-#         buffer = StringIO.StringIO()
-#         img.save(buffer)
-#         filename = 'client-%s.png' % (self.id)
-#         filebuffer = InMemoryUploadedFile(
-#             buffer, None, filename, 'image/png', buffer.len, None)
-#         self.img.save(filename, filebuffer,save=False)
-#     return super().save(*args, **kwargs)
-
-    # def generate_qrcode(self):
-    #     qr = qrcode.make('hello word')
-    #     qr.save(self.img)
+    def delivrer_imprimer_carte():
+        pass
+    def verificationNni():
+        pass

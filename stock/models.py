@@ -72,7 +72,11 @@ class Boutique(models.Model):
         pass
     def genererBel():
         pass
-      
+class Magazine(models.Model):
+    lieu = models.CharField(max_length=32)
+    magaziniere = models.ForeignKey(User, on_delete=models.CASCADE)
+    stock=models.OneToOneField(Stock, on_delete=models.CASCADE)
+    wilaya = models.CharField(max_length=40)
 
 class Entrer(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
