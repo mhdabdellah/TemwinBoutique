@@ -316,7 +316,7 @@ def categorieform(request):
 def articleform(request):
     message = get_notifications(request)
     if request.method == 'POST':
-        article_Form = NewArticle(request.user,request.POST)
+        article_Form = ProductForm(request.user,request.POST)
         if article_Form.is_valid():
             article_Form= article_Form.save(commit=False)
             article_Form.user = User.objects.get(id=request.user.pk)
@@ -328,7 +328,7 @@ def articleform(request):
             return redirect(reverse('stock:articleform'))
     else:
     
-        article_Form = NewArticle(request.user)
+        article_Form = ProductForm(request.user)
         context={ 
            
             'article_Form' : article_Form,
@@ -339,28 +339,6 @@ def articleform(request):
 
 
     
-@login_required(login_url='accounts/login')
-@in_fix
-def entrerform(request):
-    if request.method == 'POST':
-        entrer_Form = NewEntrer(request.POST)
-        if entrer_Form.is_valid():
-            entrer_Form= entrer_Form.save(commit=False)
-            entrer_Form.user = User.objects.get(id=request.user.pk)
-            entrer_Form.save()
-            messages.success(
-                request, f"Felicitations l'article  {entrer_Form.user}  est bien ajoute dans la stock dont l'ID:  ")
-            return redirect(reverse('stock:entrerform'))
-    else:
-    
-        entrer_Form = NewEntrer(request.user)
-        context={
-            
-            'entrer_Form' : entrer_Form,
-
-        }
-        return render(request,'stock/entrerform.html',context)
-
   
 @login_required(login_url='accounts/login')
 def sortirform(request):
@@ -391,49 +369,6 @@ def sortirform(request):
 
         }
         return render(request,'stock/sortirform.html',context)
-
-@login_required(login_url='accounts/login')
-@in_fix
-def commandeform(request):
-
-
-   
-    if request.method == 'POST':
-        commande_Form = NewCommande(request.POST)
-        if commande_Form.is_valid():
-            myform=commande_Form.save()
-            messages.success(
-                request, f"Felicitations {myform.user} votre commande est bien ajoute")
-            return redirect(reverse('stock:commandeform'))
-    else:
-        commande_Form = NewCommande()
-        context={
-           
-            'commande_Form' : commande_Form,
-
-        }
-        return render(request,'stock/commandeform.html',context)
-
-
-    
-@login_required(login_url='accounts/login')
-@in_fix
-def panierform(request):
-    if request.method == 'POST':
-        panier_Form = NewPanier(request.POST)
-        if panier_Form.is_valid():
-            myform=panier_Form.save()
-            messages.success(
-                request, f"Felicitations il y a {myform.qte}  est bien ajoute dans votre pagnie")
-            return redirect(reverse('stock:panierform'))
-    else:
-        panier_Form = NewPanier()
-        context={
-           
-            'panier_Form' : panier_Form,
-
-        }
-        return render(request,'stock/panierform.html',context)
 
 @login_required(login_url='accounts/login')
 def factureform(request):
@@ -469,17 +404,6 @@ def tableuser(request):
     }
     return render(request,'stock/table_user.html',context)
 
-# affichage de contenie de la table Entrer dans la page table_entrer
-@login_required(login_url='accounts/login')
-@in_fix
-def tentrer(request):
-    context={
-
-        'title': 'les article entrer dans les stock' ,
-        'tentrer': Entrer.objects.all()
-
-    }
-    return render(request,'stock/table_entrer.html',context)
 
 @login_required(login_url='accounts/login')
 def tarticle(request):
@@ -565,27 +489,6 @@ def tsortir(request):
     }
     return render(request,'stock/table_sortir.html',context)
 
-@login_required(login_url='accounts/login')
-@in_fix
-def tcommande(request):
-    context={
-
-        'title': 'les article' ,
-        'tcommande': Commande.objects.all()
-
-    }
-    return render(request,'stock/table_commande.html',context)
-
-@login_required(login_url='accounts/login')
-@in_fix
-def tpanier(request):
-    context={
-
-        'title': 'les article' ,
-        'tpanier': Panier.objects.all()
-
-    }
-    return render(request,'stock/table_panier.html',context)
 
 @login_required(login_url='accounts/login')
 @admin_and_manager_only
@@ -598,28 +501,12 @@ def tfacture(request):
     }
     return render(request,'stock/table_facture.html',context)
 
-@login_required(login_url='accounts/login')
-@in_fix
-def results(request):
-    search_text = request.GET.get('csrfmiddlewaretoken','')
-    results = Article.objects.filter(nom=search_text)
-    return render(request,'stock/results.html',{'results' : results})
-
-@login_required(login_url='accounts/login')
-def search(request):
-    context={
-
-        'title': 'la recherche' ,
-        'body': 'body'
-
-    }
-    return render(request,'stock/search.html',context)
 
 @login_required(login_url='accounts/login')
 @admin_and_manager_only
 def update_article(request, id):
     article = Article.objects.get(id=id)
-    form = NewArticle(request.user,request.POST or None, instance=article )
+    form = ProductForm(request.user,request.POST or None, instance=article )
     if form.is_valid():
         myform = form.save()
         return redirect(reverse('stock:table_article'))
