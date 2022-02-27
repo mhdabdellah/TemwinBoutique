@@ -125,11 +125,11 @@ def clear_cart(request):
 @login_required(login_url='accounts/login')
 def home(request):
     message = get_notifications(request)
-
+    print(request.user.profile.image.url)
     if request.user.is_staff == True and request.user.is_superuser == False :
         categorie=Categorie.objects.filter(user = request.user)
         article=Article.objects.filter(user = request.user)
-        boutique = Boutique.objects.filter(magazinier = request.user)
+        # boutique = Boutique.objects.filter(magazinier = request.user)
         # stock=Stock.objects.filter(magazine = request.user)
         user=User.objects.all()
         context={'user':user,'categorie':categorie,'article':article,'stock':{},'tboutique':boutique,}

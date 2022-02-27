@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('stock.urls', namespace='stock')),
     path('chat/', include('chat.urls', namespace='chat')),
     path('client/', include('client.urls', namespace='client')),
+    path('CSA/',include('CSA.urls', namespace='CSA')),
     path('admin/', admin.site.urls),
 ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

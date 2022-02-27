@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'chat',
     'channels',
     'client.apps.ClientConfig',
+    'CSA'
 ]
 # ROOT_URLCONF = 'Stocki.urls'
 MIDDLEWARE = [
