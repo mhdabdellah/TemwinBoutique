@@ -129,10 +129,26 @@ def home(request):
     if request.user.is_staff == True and request.user.is_superuser == False :
         categorie=Categorie.objects.filter(user = request.user)
         article=Article.objects.filter(user = request.user)
-        boutique = Boutique.objects.filter(magazinier = request.user)
+        profiles = Profile.objects.filter(manager = request.user.id)
+        users=[]
+        boutiques=[]
+        for profile in profiles:
+            # u = User.objects.get(id=profile.user.pk)
+            user = User.objects.filter(id=profile.user.pk)
+            users.append(user)
+            for us in user:
+                boutique = Boutique.objects.filter(vendeur = us.id)
+                boutiques.append(boutique)
+            # boutique.append(bt)
+            # users = User.objects.get(id = profile.user.pk)
+            # user.append(u)
+            
+        # print(users)
+        # print(len(users))
+        # print(user)
         # stock=Stock.objects.filter(magazine = request.user)
-        user=User.objects.all()
-        context={'user':user,'categorie':categorie,'article':article,'stock':{},'tboutique':boutique,}
+        # user=User.objects.filter()
+        context={'user':users,'categorie':categorie,'article':article,'stock':{},'boutique':boutiques,}
         return render(request,'stock/index.html',context)
 
     if request.user.is_staff == False and request.user.is_superuser == False:
@@ -395,17 +411,33 @@ def factureform(request):
 @login_required(login_url='accounts/login')
 @admin_and_manager_only 
 def tableuser(request):
-    message = get_notifications(request)
-    profile = Profile.objects.all()
-    user = User.objects.all()
-    context={
+    if request.user.is_staff == True and request.user.is_superuser == False :
+        message = get_notifications(request)
+        profiles = Profile.objects.filter(manager = request.user.id)
+      
+        for profile in profiles:
+            
+            user = User.objects.filter(id=profile.user.pk)
 
-        'profile': profile,
-        'user': user,
-        'message': message
+        context={
+            'profile': profiles,
+            'user':user,
+            'message': message
+        
+        }
+        return render(request,'stock/table_user.html',context)
+    else:
+        message = get_notifications(request)
+        profile = Profile.objects.all()
+        user = User.objects.all()
+        context={
 
-    }
-    return render(request,'stock/table_user.html',context)
+            'profile': profile,
+            'user': user,
+            'message': message
+
+        }
+        return render(request,'stock/table_user.html',context)
 
 
 @login_required(login_url='accounts/login')
@@ -588,6 +620,7 @@ def imprimer_facture(request, id):
 @admin_and_manager_only
 def tboutique(request):
     if request.user.is_staff == True and request.user.is_superuser == True :
+        
         context={
 
             'title': 'les Boutiques' ,
@@ -595,12 +628,30 @@ def tboutique(request):
 
         }
         return render(request,'stock/table_boutique.html',context)
+
+        users=[]
+        
+        for profile in profiles:
+            # u = User.objects.get(id=profile.user.pk)
+            user = User.objects.filter(id=profile.user.pk)
+            users.append(user)
+            for us in user:
+                boutique = Boutique.objects.filter(vendeur = us.id)
+                boutiques.append(boutique)
     
     if request.user.is_staff == True and request.user.is_superuser == False :
+        profiles = Profile.objects.filter(manager = request.user.id)
+        boutiques=[]
+        for profile in profiles:
+            u = User.objects.get(id=profile.user.pk)
+            boutique = Boutique.objects.filter(vendeur = u.id)
+            boutiques.append(boutique)
+        for bt in boutiques:
+            print(bt.id)
         context={
 
             'title': 'les Boutiques' ,
-            'tboutique': Boutique.objects.filter(magazinier = request.user)
+            'tboutique': boutiques
 
         }
         return render(request,'stock/table_boutique.html',context)

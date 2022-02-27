@@ -41,9 +41,9 @@ def signup(request):
              profile.save()
              user = User.objects.get(id=request.user.pk)
              
-             boutique=Boutique.objects.get(id=us.id)
-             boutique.magazinier=int(request.user.pk)
-             boutique.save()
+            #  boutique=Boutique.objects.get(id=us.id)
+            #  boutique.magazinier=int(request.user.pk)
+            #  boutique.save()
             messages.success(
                 request, f"Felicitation utilisateur bien ajoute f'{us.username}")
 
