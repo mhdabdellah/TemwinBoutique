@@ -88,6 +88,9 @@ class Magazine(models.Model):
     # stock=models.OneToOneField(Stock, on_delete=models.CASCADE)
     wilaya = models.CharField(max_length=40)
 
+
+def __str__(self):
+        return f"la magazine gerer par l'utilisateur  {self.magaziniere}"
 @receiver(post_save, sender=User)
 def create_user_magasine(sender, instance, created, **kwargs):
     if created:
