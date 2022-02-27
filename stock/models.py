@@ -71,7 +71,6 @@ class Boutique(models.Model):
     lieu = models.CharField(max_length=32)
     moghataa = models.CharField(max_length=40)
     vendeur=models.OneToOneField(User,on_delete=models.CASCADE)
-    magazinier=models.CharField(max_length=40,null=True)
     # stock=models.OneToOneField(Stock,on_delete=models.CASCADE)
     def extraire_situation_boutique():
         pass
