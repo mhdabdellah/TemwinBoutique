@@ -129,8 +129,9 @@ def home(request):
         categorie=Categorie.objects.filter(user = request.user)
         article=Article.objects.filter(user = request.user)
         stock=Stock.objects.filter(user = request.user)
+        profile = Profile.objects.get(user=request.user)
         user=User.objects.all()
-        context={'user':user,'categorie':categorie,'article':article,'stock':stock,}
+        context={'user':user,'categorie':categorie,'article':article,'profile': profile,'stock':stock,}
         return render(request,'stock/index.html',context)
 
     if request.user.is_staff == False and request.user.is_superuser == False:
