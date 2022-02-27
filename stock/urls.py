@@ -1,12 +1,13 @@
 from django.urls import path
 from . import views
+from .views import Table_magazine
 app_name='stock'
 urlpatterns=[
     path('',views.home,name='home'),
     path('stockform',views.stockform ,name='stockform'),
     path('categorieform',views.categorieform ,name='categorieform'),
     path('articleform',views.articleform ,name='articleform'),
-    #vvvvvvv
+    path('table_magazine/',Table_magazine.as_view() ,name='table_magazine'),
     path('sortirform',views.sortirform ,name='sortirform'),
     path('factureform',views.factureform ,name='factureform'),
     path('ajax/load-articles/',views.load_articles,name='load_articles'),

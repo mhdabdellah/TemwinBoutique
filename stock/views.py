@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect,get_object_or_404
+from django.views.generic.list import ListView
 from django.http import HttpResponse
 from django import template
 from django.template.loader import get_template
@@ -621,3 +622,14 @@ def delete_boutique(request, id):
 
     return render(request,'stock/delete_boutique.html', {'boutique': boutique})
 
+
+class Table_magazine(ListView):
+   # specify the model for list view
+    model = Magazine
+   
+    def get(self,request, *args, **kwargs):
+        qs =Magazine.objects.all()
+        print(qs)
+        context ={'magazines':qs}
+        return render (request,'stock/Magazin/table_magazines.html',context)
+        
