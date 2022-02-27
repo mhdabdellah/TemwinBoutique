@@ -8,7 +8,7 @@ class SignupForm(UserCreationForm):
         model = User
         fields = ['username', 'first_name', 'last_name', 'email','is_staff', 'password1', 'password2']
         labels={
-            'is_staff':'manager'
+            'is_staff':'magazinier'
         }
 
 class UserForm(forms.ModelForm):
