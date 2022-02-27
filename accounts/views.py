@@ -56,7 +56,9 @@ def signup(request):
 
 def profile(request):
     profile = Profile.objects.get(user=request.user)
-    return render(request, 'accounts/profile.html', {'profile': profile})
+    return render(request, 'accounts/profile.html',{'profile': profile})
+
+
 
 
 def profile_edit(request):
