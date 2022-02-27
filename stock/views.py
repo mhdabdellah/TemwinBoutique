@@ -128,9 +128,10 @@ def home(request):
     if request.user.is_staff == True and request.user.is_superuser == False :
         categorie=Categorie.objects.filter(user = request.user)
         article=Article.objects.filter(user = request.user)
+        boutique = Boutique.objects.filter(magazinier = request.user)
         # stock=Stock.objects.filter(magazine = request.user)
         user=User.objects.all()
-        context={'user':user,'categorie':categorie,'article':article,'stock':{},}
+        context={'user':user,'categorie':categorie,'article':article,'stock':{},'tboutique':boutique,}
         return render(request,'stock/index.html',context)
 
     if request.user.is_staff == False and request.user.is_superuser == False:
@@ -148,7 +149,8 @@ def home(request):
         article=Article.objects.all()
         stock=Stock.objects.all()
         sortir=Sortir.objects.all()
-        context={'user':user,'categorie':categorie,'article':article,'stock':stock, 'sortir':sortir,'message': message}
+        boutique = Boutique.objects.all()
+        context={'user':user,'boutique':boutique,'categorie':categorie,'article':article,'stock':stock, 'sortir':sortir,'message': message}
         return render(request,'stock/index.html',context)
 
 @login_required(login_url='accounts/login')
@@ -580,4 +582,42 @@ def imprimer_facture(request, id):
     facture = Facture.objects.get(id=id)
    
     return render(request,'stock/imprimer_facture.html',{'facture':  facture})   
+
+@login_required(login_url='accounts/login')
+@admin_and_manager_only
+def tboutique(request):
+    if request.user.is_staff == True and request.user.is_superuser == True :
+        context={
+
+            'title': 'les Boutiques' ,
+            'tboutique': Boutique.objects.all()
+
+        }
+        return render(request,'stock/table_boutique.html',context)
+    
+    if request.user.is_staff == True and request.user.is_superuser == False :
+        context={
+
+            'title': 'les Boutiques' ,
+            'tboutique': Boutique.objects.filter(magazinier = request.user)
+
+        }
+        return render(request,'stock/table_boutique.html',context)
+
+def update_boutique(request, id):
+    boutique = Boutique.objects.get(id=id)
+    form = NewBoutique(request.POST or None, instance=boutique )
+    if form.is_valid():
+        myform = form.save()
+        return redirect(reverse('stock:table_boutique'))
+
+    return render(request,'stock/update_boutique.html',{ 'form': form,  'boutique': boutique})
+
+def delete_boutique(request, id):
+    boutique = Boutique.objects.get(id=id)
+    if request.method == 'POST': 
+        boutique.delete()
+        return redirect(reverse('stock:table_boutique'))
+
+    return render(request,'stock/delete_boutique.html', {'boutique': boutique})
 

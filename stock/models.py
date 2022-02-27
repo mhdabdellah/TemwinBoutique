@@ -13,6 +13,7 @@ from django.core.files import File
 
 
 
+
 class Categorie(models.Model):
     categorie=models.CharField(max_length=20,null=True)
     user=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
@@ -70,17 +71,27 @@ class Boutique(models.Model):
     lieu = models.CharField(max_length=32)
     moghataa = models.CharField(max_length=40)
     vendeur=models.OneToOneField(User,on_delete=models.CASCADE)
+    magazinier=models.CharField(max_length=40,null=True)
     # stock=models.OneToOneField(Stock,on_delete=models.CASCADE)
     def extraire_situation_boutique():
         pass
     def genererBel():
         pass
 
+    def __str__(self):
+        return str(self.vendeur)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
 @receiver(post_save, sender=User)
-def create_user_boutique(sender, instance, created, **kwargs):
+def create_user_boutique_or_magasine(sender, instance, created, **kwargs):
     if created:
-        if not instance.is_staff:
-            boutique = Boutique.objects.create(vendeur=instance)
+        if not instance.is_superuser:
+            if instance.is_staff:
+                magasine = Magazine.objects.create(magaziniere=instance)
+            else:
+                boutique = Boutique.objects.create(vendeur=instance)
 
 class Magazine(models.Model):
     lieu = models.CharField(max_length=32)
@@ -88,12 +99,18 @@ class Magazine(models.Model):
     # stock=models.OneToOneField(Stock, on_delete=models.CASCADE)
     wilaya = models.CharField(max_length=40)
 
-@receiver(post_save, sender=User)
-def create_user_magasine(sender, instance, created, **kwargs):
-    if created:
-        if instance.is_staff:
-                 if not instance.is_superuser:
-                    magasine = Magazine.objects.create(magaziniere=instance)
+    def __str__(self):
+        return str(self.magaziniere)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+# @receiver(post_save, sender=User)
+# def create_user_magasine(sender, instance, created, **kwargs):
+#     if created:
+#         if instance.is_staff:
+#                  if not instance.is_superuser:
+#                     magasine = Magazine.objects.create(magaziniere=instance)
 
 class Entrer(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
