@@ -123,10 +123,25 @@
                     <div class="creative-state-info text-center pull-left">
                         <a href="{%url 'stock:table_boutique'%}">
                             
-                        <h3 class="mt-4"> {{boutique.count}} </h3>
+                        <h3 class="mt-4"> {{boutique|length}} </h3>
                         <p class="mb-0">Total Points de ventes</p>
                         </a>
                         <div class=" widget-action-link"></div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="creative-state-icon bg-purple text-center pull-left">
+                          <div class="preview">  <i class="icon-people"></i> </div>
+                    </div>
+                    <div class="creative-state-info text-center pull-left">
+                        <a href="{%url 'stock:table_users'%}">
+                            
+                        <h3 class="mt-4"> {{user|length}} </h3>
+                        <p class="mb-0">totale utilisateur</p>
+                        </a>
+                        <div class=" widget-action-link">
+                        </div>
+
                     </div>
                 </div>
 {%endif%}                 
