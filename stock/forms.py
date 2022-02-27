@@ -83,3 +83,7 @@ class NewFacture(forms.ModelForm):
             'dateFacture': DateInput()
         } 
 
+class NewBoutique(forms.ModelForm):
+    class Meta:
+        model = Boutique
+        fields ='__all__' 

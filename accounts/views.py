@@ -29,10 +29,10 @@ def signup(request):
              profile.manager=int(request.user.pk)
              profile.save()
              user = User.objects.get(id=request.user.pk)
-             if user.is_staff:
-                 if not user.is_superuser:
-                    magasine=Magazine.objects.get(id=us.id)
-                    magasine.save()
+            #  if user.is_staff:
+            #      if not user.is_superuser:
+            #         magasine=Magazine.objects.get(id=us.id)
+            #         magasine.save()
             else:
              group = Group.objects.get(name='vendeur')
              us.groups.add(group)
@@ -40,9 +40,10 @@ def signup(request):
              profile.manager=int(request.user.pk)
              profile.save()
              user = User.objects.get(id=request.user.pk)
-             if not user.is_staff:
-                boutique=Boutique.objects.get(id=us.id)
-                boutique.save()
+             
+             boutique=Boutique.objects.get(id=us.id)
+             boutique.magazinier=int(request.user.pk)
+             boutique.save()
             messages.success(
                 request, f"Felicitation utilisateur bien ajoute f'{us.username}")
 
@@ -55,7 +56,9 @@ def signup(request):
 
 def profile(request):
     profile = Profile.objects.get(user=request.user)
-    return render(request, 'accounts/profile.html', {'profile': profile})
+    return render(request, 'accounts/profile.html',{'profile': profile})
+
+
 
 
 def profile_edit(request):

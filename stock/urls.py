@@ -18,6 +18,7 @@ urlpatterns=[
     path('table_stock',views.tstock,name='table_stock'),
     path('table_sortir',views.tsortir,name='table_sortir'),
     path('table_facture',views.tfacture,name='table_facture'),
+    path('table_boutique',views.tboutique,name='table_boutique'),
     #vvvvvv
     path('sortir_article/',views.sortir_article,name='sortir_article'),
     path('update_article/<int:id>',views.update_article,name='update_article'),
@@ -27,7 +28,8 @@ urlpatterns=[
     path('update_stock/<int:id>',views.update_stock,name='update_stock'),
     path('delete_stock/<int:id>',views.delete_stock,name='delete_stock'),
     path('delete_sortir/<int:id>',views.delete_sortir,name='delete_sortir'),
-
+    path('update_boutique/<int:id>',views.update_boutique,name='update_boutique'),
+    path('delete_boutique/<int:id>',views.delete_boutique,name='delete_boutique'),
     path('ajax_delete',views.ajax_delete,name='ajax_delete'),
     path('ajax_update/',views.ajax_update,name='ajax_update'),
     
